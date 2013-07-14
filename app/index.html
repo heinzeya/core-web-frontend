@@ -79,24 +79,6 @@
   <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
   <!-- endbuild -->
 
-  <script type="text/javascript">
-  $(document).ready(function() {
-    $('.signin-container').submit(function() {
-      document.location = '#';
-      return false;
-    });
-
-    var updateBoxPosition = function() {
-      $('.signin-container').css({
-        'margin-top': ($(window).height() - $('.signin-container').height()) / 2
-      });
-    };
-    $(window).resize(updateBoxPosition);
-    setTimeout(updateBoxPosition, 50);
-  });
-  </script>
-
-
 </body>
 
 </html>
