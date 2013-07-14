@@ -1,9 +1,25 @@
-<div class="hero-unit">
-  <h1>'Allo, 'Allo!</h1>
-  <p>You now have</p>
-  <ul>
-      <li ng-repeat="thing in awesomeThings">{{thing}}</li>
-  </ul>
-  <p>installed.</p>
-  <h3>Enjoy coding! - Yeoman</h3>
+<div>
+  <section class="signin-container">
+    <a href="#" title="MyWebClass" class="header">
+      <img src="images/af-logo-signin.png" alt="Sign in to MyWebClass">
+      <span>
+        Sign in to
+        <br>
+        <strong>MyWebClass</strong>
+      </span>
+    </a>
+
+    <form action="#" accept-charset="utf-8">
+      <fieldset>
+        <div class="fields">
+          <input type="text" name="username" placeholder="Username" id="id_username" tabindex="1" required>
+
+          <input type="password" name="password" placeholder="Password" id="id_password" tabindex="2" required>
+        </div>
+        <a href="#" title="" tabindex="3" class="forgot-password">Forgot?</a>
+
+        <button type="submit" class="btn btn-primary btn-block" tabindex="4">Sign In</button>
+      </fieldset>
+    </form>
+  </section>
 </div>
