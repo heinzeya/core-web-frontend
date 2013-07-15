@@ -14,6 +14,20 @@
             </li>
             <li><a href="#">Contact</a>
             </li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
+              <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
+                <form method="post" action="#" accept-charset="UTF-8">
+                  <input style="margin-bottom: 15px;" type="text" placeholder="Username" id="username" name="username" required>
+                  <input style="margin-bottom: 15px;" type="password" placeholder="Password" id="password" name="password" required>
+
+                  <input class="btn btn-block btn-success" type="submit" id="sign-in" value="Sign In">
+
+                  <label style="text-align:center;margin-top:5px">or</label>
+                  <input class="btn btn-block btn-success" type="button" id="sign-in-google" value="Sign In with Google">
+                </form>
+              </div>
+            </li>
           </ul>
         </div>
       </div>
@@ -59,3 +73,12 @@
   </div>
 
 </div>
+
+<script>
+$(document).ready(function() {
+  //Handles menu drop down
+  $('.dropdown-menu').find('form').click(function(e) {
+    e.stopPropagation();
+  });
+});
+</script>
