@@ -52,3 +52,7 @@ We assume you already install the dependencies. To run the test:
 ```
 $ grunt test
 ```
+
+## License
+
+Licensed under the MIT License.
