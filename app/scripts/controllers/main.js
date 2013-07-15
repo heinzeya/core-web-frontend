@@ -2,9 +2,5 @@
 
 angular.module('mwcCoreWebFrontendApp')
   .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+    $scope.heading = 'My Web Class';
   });
