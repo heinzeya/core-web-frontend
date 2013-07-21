@@ -20,7 +20,7 @@ This core web frontend is built based on the Yeoman workflow, so you must instal
 * [Grunt](http://gruntjs.com/)
 * [generator-angular](https://github.com/yeoman/generator-angular)
  
-Once you have successfully install the required tools you move along.
+Once you have successfully install the required tools you can move along.
 
 ## Get started
 
