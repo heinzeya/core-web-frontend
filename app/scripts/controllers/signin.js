@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('mwcCoreWebFrontendApp')
-  .controller('SigninCtrl', function($scope, signinFactory) {
+  .controller('SigninCtrl', function($scope, sessionFactory) {
     console.log('$scope', $scope);
-    console.log('signinFactory', signinFactory);
+    console.log('sessionFactory', sessionFactory);
   });
