@@ -1,24 +1,10 @@
 'use strict';
 
 angular.module('mwcCoreWebFrontendApp')
-  .factory('menuFactory', function() {
+  .factory('menuFactory', function($http) {
 
-    var view = '../views/menus.html'
-
-    var menus = {
-      "home": {
-        "title": "Home",
-        "uri": "/"
-      },
-      "about": {
-       "title" : "About Us",
-       "uri": "/about"
-      },
-      "signin": {
-       "title" : "Sign In",
-       "uri": "/signin"
-      }
-    };
+    // load menus from local JSON file
+    var menus = $http.get('/menus.json');
 
     // Public API here
     return {
