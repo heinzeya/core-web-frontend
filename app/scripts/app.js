@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mwcCoreWebFrontendApp', ['ngResource'])
+angular.module('mwcCoreWebFrontendApp', [])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
