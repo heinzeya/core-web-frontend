@@ -12,7 +12,6 @@ describe('Service: sessionFactory', function () {
   }));
 
   it('should have signin()', function () {
-    console.log('sessionFactory', sessionFactory.signin());
     expect(!!sessionFactory.signin).toBeDefined();
     expect(!!sessionFactory.isSignedIn).toBeDefined();
   });
