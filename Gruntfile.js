@@ -115,7 +115,15 @@ module.exports = function (grunt) {
       all: [
         'Gruntfile.js',
         '<%= yeoman.app %>/scripts/{,*/}*.js'
-      ]
+      ],
+      ci: {
+        options: {
+          force: true,
+          reporter: 'checkstyle',
+          reporterOutput: 'results/jshint-result.xml'
+        },
+        src: ['Gruntfile.js', '<%= yeoman.app %>/scripts/{,*/}*.js']
+      }
     },
     coffee: {
       dist: {
@@ -281,6 +289,30 @@ module.exports = function (grunt) {
       e2e: {
         configFile: 'karma-e2e.conf.js',
         singleRun: true
+      },
+      unitci: {
+        configFile: 'karma.conf.js',
+        singleRun: true,
+        reporters: ['junit', 'coverage'],
+        junitReporter: {
+          outputFile: 'results/unit-test-results.xml'
+        },
+        coverageReporter: {
+          type: 'html',
+          dir: 'results/unit/'
+        }
+      },
+      e2eci: {
+        configFile: 'karma-e2e.conf.js',
+        singleRun: true,
+        reporters: ['junit', 'coverage'],
+        junitReporter: {
+          outputFile: 'results/e2e-test-results.xml'
+        },
+        coverageReporter: {
+          type: 'html',
+          dir: 'results/e2e/'
+        }
       }
     },
     cdnify: {
@@ -321,13 +353,24 @@ module.exports = function (grunt) {
       'open',
       'watch'
     ]);
+
+    return null;
   });
 
   grunt.registerTask('test', [
     'clean:server',
     'concurrent:test',
     'connect:test',
-    'karma'
+    'karma:unit',
+    'karma:e2e'
+  ]);
+
+  grunt.registerTask('testci', [
+    'clean:server',
+    'concurrent:test',
+    'connect:test',
+    'karma:unitci',
+    'karma:e2eci'
   ]);
 
   grunt.registerTask('build', [
