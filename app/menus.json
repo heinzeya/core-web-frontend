@@ -1,0 +1,14 @@
+{
+  "home": {
+    "title": "Home",
+    "uri": "/"
+  },
+  "about": {
+    "title": "About Us",
+    "uri": "/about"
+  },
+  "signin": {
+    "title": "Sign In",
+    "uri": "/signin"
+  }
+}
