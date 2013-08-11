@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('mwcCoreWebFrontendApp')
-  .controller('MenusCtrl', function($scope, menuFactory) {
-    menuFactory.getMenus()
+  .controller('MenusCtrl', function($scope, $http) {
+    $http.get('/menus.json')
       .success(function(data) {
         $scope.menus = data;
       })
