@@ -16,7 +16,7 @@ describe('Service: authService', function () {
   });
 
   // load the controller's module
-  beforeEach(module('AuthTest', 'MyMocks'));
+  beforeEach(module('CoreAuth', 'MyMocks'));
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function (_authService_, _$httpBackend_, _CONFIG_) {

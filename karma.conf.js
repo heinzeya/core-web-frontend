@@ -12,7 +12,15 @@ files = [
   'app/scripts/*.js',
   'app/scripts/**/*.js',
   'test/mock/**/*.js',
-  'test/spec/**/*.js'
+  'test/spec/**/*.js',
+
+  // Config component
+  'components/config/main.js',
+
+  // Auth component
+  'components/auth/main.js',
+  'components/auth/services/*.js',
+  'components/auth/test/spec/services*.js'
 ];
 
 // list of files to exclude
