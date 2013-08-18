@@ -18,3 +18,4 @@ dist
 app/bower_components
 core-web-frontend.sublime-project
 core-web-frontend.sublime-workspace
+.idea
