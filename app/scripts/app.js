@@ -7,10 +7,6 @@ angular.module('mwcCoreWebFrontendApp', [])
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
-      .when('/signin', {
-        templateUrl: 'views/signin.html',
-        controller: 'SigninCtrl'
-      })
       .otherwise({
         redirectTo: '/'
       });
