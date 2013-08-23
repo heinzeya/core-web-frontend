@@ -6,3 +6,4 @@ app/bower_components
 results/
 core-web-frontend.sublime-project
 core-web-frontend.sublime-workspace
+.idea
