@@ -47,7 +47,7 @@ $ grunt server
 
 ## Running Tests
 
-We assume you already install the dependencies. To run the test:
+We assume you already install the dependencies. To run the unit and e2e test:
 
 ```
 $ grunt test
