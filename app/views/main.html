@@ -1,16 +1,9 @@
-<div class="container">
-
-  <div class="footer">
-    <p>&copy; MyWebClass 2013</p>
-  </div>
-
+<div class="hero-unit">
+  <h1>'Allo, 'Allo!</h1>
+  <p>You now have</p>
+  <ul>
+      <li ng-repeat="thing in awesomeThings">{{thing}}</li>
+  </ul>
+  <p>installed.</p>
+  <h3>Enjoy coding! - Yeoman</h3>
 </div>
-
-<script>
-$(document).ready(function() {
-  //Handles menu drop down
-  $('.dropdown-menu').find('form').click(function(e) {
-    e.stopPropagation();
-  });
-});
-</script>
