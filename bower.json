@@ -5,7 +5,8 @@
     ".jshintrc",
     ".editorconfig",
     ".gitattributes",
-    ".gitignore"
+    ".gitignore",
+    "sonar-project.properties"
   ],
   "dependencies": {
     "angular": "~1.0.7",
