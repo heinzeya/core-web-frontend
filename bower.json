@@ -1,9 +1,11 @@
 {
-  "name": "coreWebFrontend",
+  "name": "kabam-core-web-frontend",
   "version": "0.0.0",
   "ignore": [
-    "/*",
-    "!components/*"
+    ".jshintrc",
+    ".editorconfig",
+    ".gitattributes",
+    ".gitignore"
   ],
   "dependencies": {
     "angular": "~1.0.7",
