@@ -2,11 +2,8 @@
   "name": "kabam-core-web-frontend",
   "version": "0.0.0",
   "ignore": [
-    ".jshintrc",
-    ".editorconfig",
-    ".gitattributes",
-    ".gitignore",
-    "sonar-project.properties"
+    "/*",
+    "!components/*"
   ],
   "dependencies": {
     "angular": "~1.0.7",
