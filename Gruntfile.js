@@ -134,6 +134,7 @@ module.exports = function(grunt) {
           force: true,
           reporter: 'checkstyle',
           reporterOutput: 'results/jshint-result.xml'
+        }
       },
       all: [
         'Gruntfile.js',
