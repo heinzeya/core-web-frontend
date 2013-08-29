@@ -129,6 +129,12 @@ module.exports = function(grunt) {
       options: {
         jshintrc: '.jshintrc'
       },
+      ci: {
+        options: {
+          force: true,
+          reporter: 'checkstyle',
+          reporterOutput: 'results/jshint-result.xml'
+      },
       all: [
         'Gruntfile.js',
         '<%= yeoman.app %>/scripts/{,*/}*.js'
