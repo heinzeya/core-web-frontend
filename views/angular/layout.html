@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html ng-app="CoreFrontend">
+<head>
+    <title>Kabam</title>
+    [[#css]]styles/main.css[[/css]]
+</head>
+<body>
+[[={{ }}=]]
+{{{ yield }}}
+{{=[[ ]]=}}
+<script type="text/javascript">
+    window.CONFIG = {
+        signUpURL: '/auth/signup',
+        loginURL: '/auth/login',
+        logoutURL: '/auth/logout'
+    };
+    window.USER = [[& user ]];
+</script>
+[[#js]]scripts/app.js[[/js]]
+</body>
+</html>

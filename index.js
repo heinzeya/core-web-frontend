@@ -85,7 +85,8 @@ exports.routes = function (core) {
     if (req.user) {
       user = req.user.export();
     }
-    res.render('index', {
+    res.render('angular/index', {
+      layout: 'angular/layout',
       user: JSON.stringify(user).replace('</', '<\/'),
       css: helpers.css,
       js: helpers.js
