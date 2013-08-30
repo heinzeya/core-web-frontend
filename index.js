@@ -66,7 +66,9 @@ var makeHelpers = function (env) {
 };
 
 exports.app = function (kernel) {
-  var env = kernel.app.locals.mincerENV = new mincer.Environment(__dirname);
+  var env = kernel.app.locals.mincerENV = new mincer.Environment();
+  env.appendPath('public/bower_components');
+  env.appendPath('public/components');
   env.appendPath('public');
   kernel.app.use('/assets', new mincer.createServer(env));
 };
