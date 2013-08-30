@@ -2,8 +2,9 @@ node_modules
 dist
 .tmp
 .sass-cache
-app/bower_components
+public/bower_components
 results/
 core-web-frontend.sublime-project
 core-web-frontend.sublime-workspace
 .idea
+.DS_Store
