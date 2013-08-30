@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "dependencies": {
     "node-sass": "~0.6.4",
-    "mincer": "~0.5.7"
+    "mincer": "~0.5.7",
+    "express": "~3.3.7"
   },
   "devDependencies": {
     "kabam-kernel": "git+https://github.com/mykabam/kabam-kernel.git",
