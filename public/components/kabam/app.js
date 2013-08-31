@@ -3,7 +3,9 @@
 //=require angular-resource/angular-resource.js
 //=require angular-cookies/angular-cookies.js
 //=require angular-sanitize/angular-sanitize.js
-//=require angular-ui-router/release/angular-ui-router.js
+// require angular-ui-router/release/angular-ui-router.js
+//=require ui-router/angular-ui-router.js
+//=require ui-router/stateDirectives.js
 //=require auth/main.js
 //=require_self
 //=require kabam/controllers/index.js
@@ -11,7 +13,7 @@
 'use strict';
 
 
-var dependencies = ['ui.router', 'ui.state', 'CoreAuth.Services', 'CoreAuth.Controllers'];
+var dependencies = ['ui.router', 'CoreAuth.Services', 'CoreAuth.Controllers'];
 
 angular.module('CoreFrontend', dependencies)
   .config([
@@ -38,8 +40,12 @@ angular.module('CoreFrontend', dependencies)
       $urlRouterProvider.otherwise('/');
     }
   ])
-  .run(['guard', '$rootScope', '$state', '$stateParams', function(guard, $rootScope, $state, $stateParams){
-    $rootScope.$state = $state;
-    $rootScope.$stateParams = $stateParams;
-    guard.watch();
-  }]);
+  .run([
+    'guard', 'authService', '$rootScope', '$state', '$stateParams',
+    function(guard, authService, $rootScope, $state, $stateParams){
+      $rootScope.authService = authService;
+      $rootScope.$state = $state;
+      $rootScope.$stateParams = $stateParams;
+      guard.watch();
+    }
+  ]);
