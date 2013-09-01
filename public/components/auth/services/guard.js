@@ -13,6 +13,12 @@
       function($rootScope, $location, authService){
         return {
           watch: function(){
+
+            authService.onUncompletedProfile = function(user){
+              //TODO: configurable profile edit path
+              $location.url('/profile')
+            };
+
             //TODO: maybe we need a user service for that
             if(window.USER && Object.keys(window.USER).length > 0){
               authService.authenticate(window.USER);
@@ -32,7 +38,7 @@
 
             authService.onauthenticated = function(user){
               $location.url('/');
-            }
+            };
           }
         }
       }

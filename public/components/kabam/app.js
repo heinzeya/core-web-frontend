@@ -17,8 +17,8 @@ var dependencies = ['ui.router', 'CoreAuth.Services', 'CoreAuth.Controllers'];
 
 angular.module('CoreFrontend', dependencies)
   .config([
-    '$stateProvider', '$urlRouterProvider',
-    function ($stateProvider, $urlRouterProvider) {
+    '$stateProvider', '$urlRouterProvider', '$locationProvider',
+    function ($stateProvider, $urlRouterProvider, $locationProvider) {
       $stateProvider
         .state('index', {
           url: '/',
@@ -35,9 +35,14 @@ angular.module('CoreFrontend', dependencies)
           templateUrl: '/assets/auth/views/signup.html',
           controller: 'GenericSignupCtrl',
           loginRequired: false
+        })
+        .state('profile', {
+          url: "/profile",
+          templateUrl: '/assets/kabam/views/profile.html'
         });
 
       $urlRouterProvider.otherwise('/');
+      $locationProvider.html5Mode(true)
     }
   ])
   .run([

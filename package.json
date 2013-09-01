@@ -8,7 +8,7 @@
     "less": "~1.4.2"
   },
   "devDependencies": {
-    "kabam-kernel": "git+https://github.com/mykabam/kabam-kernel.git",
+    "kabam-kernel": "https://github.com/mykabam/kabam-kernel/tarball/master",
     "grunt": "~0.4.1",
     "grunt-contrib-copy": "~0.4.1",
     "grunt-contrib-concat": "~0.3.0",

@@ -80,7 +80,8 @@ exports.middleware = [
 ];
 
 exports.routes = function (core) {
-  core.app.get('/kabam', function (req, res) {
+  console.log('~~~~~~~~ index');
+  core.app.get('/kabam*', function (req, res) {
     var
       user = {},
       helpers = makeHelpers(core.app.locals.mincerENV);

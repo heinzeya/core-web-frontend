@@ -39,6 +39,9 @@
     if(typeof this.onauthenticated === 'function'){
       this.onauthenticated(user);
     }
+    if(!user.profileComplete && typeof this.onUncompletedProfile === 'function'){
+      this.onUncompletedProfile(user);
+    }
   };
 
   /**
