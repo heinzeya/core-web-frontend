@@ -76,23 +76,20 @@ exports.app = function (kernel) {
 exports.middleware = [
   function(kernel){
     return express.static(path.join(__dirname, 'public'));
+  },
+  function(kernel){
+    var user = {},
+      helpers = makeHelpers(kernel.app.locals.mincerENV);
+
+    return function(request,response,next){
+      if (request.user) {
+        user = request.user.export();
+      }
+
+      response.locals.user =  JSON.stringify(user).replace('</', '<\/');
+      response.locals.css = helpers.css;
+      response.locals.js = helpers.js;
+      next();
+    };
   }
 ];
-
-exports.routes = function (core) {
-  console.log('~~~~~~~~ index');
-  core.app.get('/kabam*', function (req, res) {
-    var
-      user = {},
-      helpers = makeHelpers(core.app.locals.mincerENV);
-    if (req.user) {
-      user = req.user.export();
-    }
-    res.render('angular/index', {
-      layout: 'angular/layout',
-      user: JSON.stringify(user).replace('</', '<\/'),
-      css: helpers.css,
-      js: helpers.js
-    });
-  })
-};
