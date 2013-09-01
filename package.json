@@ -44,7 +44,8 @@
     "karma-coffee-preprocessor": "~0.1.0",
     "karma-phantomjs-launcher": "~0.1.0",
     "karma": "~0.10.2",
-    "karma-ng-html2js-preprocessor": "~0.1.0"
+    "karma-ng-html2js-preprocessor": "~0.1.0",
+    "kabam-plugin-hogan": "https://github.com/mykabam/kabam-plugin-hogan/tarball/master"
   },
   "engines": {
     "node": ">=0.8.0"
