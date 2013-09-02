@@ -5,14 +5,8 @@
     "type": "git",
     "url": "https://github.com/mykabam/core-web-frontend.git"
   },
-  "dependencies": {
-    "node-sass": "~0.6.4",
-    "mincer": "~0.5.7",
-    "express": "~3.3.7",
-    "less": "~1.4.2"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "kabam-kernel": "https://github.com/mykabam/kabam-kernel/tarball/master",
     "grunt": "~0.4.1",
     "grunt-contrib-copy": "~0.4.1",
     "grunt-contrib-concat": "~0.3.0",
@@ -48,8 +42,7 @@
     "karma-coffee-preprocessor": "~0.1.0",
     "karma-phantomjs-launcher": "~0.1.0",
     "karma": "~0.10.2",
-    "karma-ng-html2js-preprocessor": "~0.1.0",
-    "kabam-plugin-hogan": "https://github.com/mykabam/kabam-plugin-hogan/tarball/master"
+    "karma-ng-html2js-preprocessor": "~0.1.0"
   },
   "engines": {
     "node": ">=0.8.0"
