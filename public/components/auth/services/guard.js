@@ -25,7 +25,7 @@
             }
 
             $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
-              if(toState.loginRequired != false && !authService.isAuthenticated()){
+              if(toState.loginRequired !== false && !authService.isAuthenticated()){
                 //TODO: configurable login path
                 $location.url("/login");
               }
