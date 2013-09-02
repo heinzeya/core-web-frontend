@@ -1,6 +1,10 @@
 {
   "name": "kabam-core-web-frontend",
   "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mykabam/core-web-frontend.git"
+  },
   "dependencies": {
     "node-sass": "~0.6.4",
     "mincer": "~0.5.7",
