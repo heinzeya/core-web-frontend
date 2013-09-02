@@ -2,21 +2,20 @@
   'use strict';
 
   angular.module('CoreAuth.Services')
-    .factory('guard', ['$rootScope', '$location', 'authService',
+    .factory('guard', ['$rootScope', '$state', 'authService',
       /**
        *
        * @param {angular.$rootScope} $rootScope
-       * @param {angular.$location} $location
+       * @param {$state} $state
        * @param {AuthService} authService
        * @returns {{watch: Function}}
        */
-      function($rootScope, $location, authService){
+      function($rootScope, $state, authService){
         return {
           watch: function(){
 
             authService.onUncompletedProfile = function(user){
-              //TODO: configurable profile edit path
-              $location.url('/profile')
+              $state.go("profile");
             };
 
             //TODO: maybe we need a user service for that
@@ -25,19 +24,22 @@
             }
 
             $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
+              if(toState.name === 'login') return;
               if(toState.loginRequired !== false && !authService.isAuthenticated()){
-                //TODO: configurable login path
-                $location.url("/login");
+                // prevent transition to the current state
+                event.preventDefault();
+                //TODO: configurable state
+                $state.go("login");
               }
             });
 
             authService.onloggedout = function(){
-              //TODO: configurable login path
-              $location.url("/login");
+              //TODO: configurable state
+              $state.go("login");
             };
 
             authService.onauthenticated = function(user){
-              $location.url('/');
+              $state.go("index");
             };
           }
         }
