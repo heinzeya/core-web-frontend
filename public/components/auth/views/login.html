@@ -6,8 +6,8 @@
                 <a class="close" data-dismiss="alert">×</a>
                 <strong>{{ errors.form }}</strong>
             </div>
-            <input type="text" ng-model="username" placeholder="Username"/>
-            <input type="password" ng-model="password" placeholder="Password"/>
+            <input type="text" ng-model="username" placeholder="Username" required/>
+            <input type="password" ng-model="password" placeholder="Password" required/>
             <button class="btn" ng-click="login()">Log in</button>
             <div>
                 <br/>
