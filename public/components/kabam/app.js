@@ -12,8 +12,10 @@
 
 'use strict';
 
-
 var dependencies = ['ui.router', 'CoreAuth.Services', 'CoreAuth.Controllers'];
+if (window.moduleDependencies && Array.isArray(window.moduleDependencies)) {
+  dependencies = dependencies.concat(window.moduleDependencies);
+}
 
 angular.module('CoreFrontend', dependencies)
   .config([
@@ -42,7 +44,7 @@ angular.module('CoreFrontend', dependencies)
         });
 
       $urlRouterProvider.otherwise('/');
-      $locationProvider.html5Mode(true)
+      $locationProvider.html5Mode(true);
     }
   ])
   .run([
