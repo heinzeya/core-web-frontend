@@ -29,7 +29,7 @@
                 // prevent transition to the current state
                 event.preventDefault();
                 //TODO: configurable state
-                $state.go("login");
+                $state.go("signup");
               }
             });
 
