@@ -9,7 +9,7 @@
       function () {
         //TODO: test provider
         this.unauthorizedState = 'signup';
-        this.uncomplitedProfileState = 'profile';
+        this.incompleteProfileState = 'profile';
         this.defaultState = 'index';
         this.onLoggedOutState = 'login';
         this.$get = [
@@ -29,7 +29,7 @@
                */
               watch: function () {
                 authService.onUncompletedProfile = function (user) {
-                  $state.go(_this.uncomplitedProfileState);
+                  $state.go(_this.incompleteProfileState);
                 };
 
                 //TODO: maybe we need a user service for that
