@@ -2,7 +2,7 @@
   'use strict';
 
   /**
-   *
+   * @name authService
    * @param {angular.$http} $http
    * @param {String} CONFIG Configuration object
    * @param {String} CONFIG.logoutUrl url for the logout
