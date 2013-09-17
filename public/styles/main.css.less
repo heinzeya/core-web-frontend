@@ -1,4 +1,33 @@
 @import "../bower_components/bootstrap/less/bootstrap";
+@import "layout";
+@import "frontpage";
+
+// http://www.paulirish.com/2012/box-sizing-border-box-ftw/
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+select,
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.uneditable-input {
+  height: @baseLineHeight + 8px;
+}
 
 [ng\:cloak], [ng-cloak], .ng-cloak {
   display: none !important;

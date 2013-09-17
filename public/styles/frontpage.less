@@ -1,0 +1,26 @@
+.fp {
+  &__section {
+    padding: 50px 0;
+    &:not(.fp__masthead):not(first-of-type){
+      //    border-top: 4px solid #c1c1c1;
+    }
+  }
+
+  &__primary-heading {
+    text-align: center;
+  }
+  &__secondary-heading {
+    text-align: center;
+    // TODO: use variable
+    color: gray;
+  }
+
+  &__masthead {
+    background: #fafafa;
+    &__sign-up {
+      input, button {
+        width: 100%;
+      }
+    }
+  }
+}
