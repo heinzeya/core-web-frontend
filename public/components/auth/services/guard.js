@@ -8,7 +8,7 @@
        */
       function () {
         //TODO: test provider
-        this.unauthorizedState = 'login';
+        this.unauthorizedState = 'signup';
         this.uncomplitedProfileState = 'profile';
         this.defaultState = 'index';
         this.onLoggedOutState = 'login';
@@ -62,3 +62,4 @@
       }
     );
 })();
+

@@ -14,6 +14,7 @@
           $scope.errors = data.errors;
         })
       }
+      $scope.showHead = true;
     }])
     .controller('GenericSignupCtrl', ['$scope', 'authService', function($scope, authService){
       $scope.message = null;
@@ -34,6 +35,7 @@
           .error(function(data, status, headers, config){
             $scope.errors = data.errors;
           })
-      }
+      };
+      $scope.showHead = true;
     }])
 })();
