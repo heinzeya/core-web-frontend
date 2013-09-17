@@ -3,7 +3,7 @@ angular.module('CoreAuth.States')
     'kabamStatesProvider',
     function(kabamStatesProvider){
       // default auth states
-      var states = [
+      kabamStatesProvider.push([
         {
           name: 'index',
           url: '/',
@@ -24,9 +24,6 @@ angular.module('CoreAuth.States')
           controller: 'GenericSignupCtrl',
           loginRequired: false
         }
-      ];
-      angular.forEach(states, function(state){
-        kabamStatesProvider.push(state)
-      })
+      ])
     }
   ]);
