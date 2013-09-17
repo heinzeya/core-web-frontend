@@ -6,42 +6,33 @@
 // require angular-ui-router/release/angular-ui-router.js
 //=require ui-router/angular-ui-router.js
 //=require ui-router/stateDirectives.js
+//=require states/states.js
 //=require auth/main.js
 //=require_self
 //=require kabam/controllers/index.js
 
 'use strict';
 
-var dependencies = ['ui.router', 'CoreAuth.Services', 'CoreAuth.Controllers'];
+var dependencies = ['ui.router', 'CoreAuth.Services', 'CoreAuth.Controllers', 'CoreAuth.States', 'kabam.states'];
 if (window.moduleDependencies && Array.isArray(window.moduleDependencies)) {
   dependencies = dependencies.concat(window.moduleDependencies);
 }
 
 angular.module('CoreFrontend', dependencies)
   .config([
-    '$stateProvider', '$urlRouterProvider', '$locationProvider',
-    function ($stateProvider, $urlRouterProvider, $locationProvider) {
-      $stateProvider
-        .state('index', {
-          url: '/',
-          templateUrl: '/assets/kabam/views/main.html',
-          controller: 'IndexCtrl'
-        })
-        .state('login', {
-          url: '/login',
-          templateUrl: '/assets/auth/views/login.html',
-          controller: 'GenericLoginCtrl'
-        })
-        .state('signup', {
-          url: '/signup',
-          templateUrl: '/assets/auth/views/signup.html',
-          controller: 'GenericSignupCtrl',
-          loginRequired: false
-        })
-        .state('profile', {
-          url: "/profile",
-          templateUrl: '/assets/kabam/views/profile.html'
-        });
+    '$stateProvider', '$urlRouterProvider', '$locationProvider', 'kabamStatesProvider',
+    function ($stateProvider, $urlRouterProvider, $locationProvider, kabamStatesProvider) {
+
+      kabamStatesProvider.push({
+        name: 'profile',
+        url: "/profile",
+        templateUrl: '/assets/kabam/views/profile.html'
+      });
+
+      // add all states that were registered in other modules
+      for(var s in kabamStatesProvider.states){
+        $stateProvider.state(kabamStatesProvider.states[s]);
+      }
 
       $urlRouterProvider.otherwise('/');
 //      $locationProvider.html5Mode(true)
