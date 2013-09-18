@@ -6,19 +6,18 @@ describe('Service: authService', function () {
     authService,
     CONFIG;
 
-  // inject CONFIG value
+  beforeEach(module('CoreAuth.Services'));
+  
   beforeEach(function(){
-    angular.module('MyMocks', []).value('CONFIG', {
-      signUpURL:'/auth/signup',
-      loginURL:'/auth/login',
-      logoutURL:'/auth/logout'
-    })
+    angular.mock.module(function($provide){
+      $provide.constant('CONFIG', {
+        signUpURL:'/auth/signup',
+        loginURL:'/auth/login',
+        logoutURL:'/auth/logout'
+      })
+    });
   });
 
-  // load the controller's module
-  beforeEach(module('CoreAuth', 'MyMocks'));
-
-  // Initialize the controller and a mock scope
   beforeEach(inject(function (_authService_, _$httpBackend_, _CONFIG_) {
     authService = _authService_;
     $httpBackend = _$httpBackend_;
@@ -75,7 +74,7 @@ describe('Service: authService', function () {
 
   describe('#signup()', function(){
     it('should POST `CONFIG.signUpURL`', function(){
-      $httpBackend.expectPOST(CONFIG.signUpURL, {username: 'joe', email: 'joe@doe.com', password: 'qweqwe'});
+      $httpBackend.expectPOST(CONFIG.signUpURL, {username: 'joe', email: 'joe@doe.com', password: 'qweqwe'}).respond(201);
       authService.signUp('joe', 'joe@doe.com', 'qweqwe');
       $httpBackend.flush()
     });
@@ -94,7 +93,6 @@ describe('Service: authService', function () {
       authService.authenticate({username: 'Joe'});
       authService.logOut();
       $httpBackend.flush();
-      console.log(authService.onloggedout);
       expect(authService.onloggedout).toHaveBeenCalled();
     })
   })

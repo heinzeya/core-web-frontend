@@ -10,20 +10,18 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'app/bower_components/angular/angular.js',
-      'app/bower_components/angular-mocks/angular-mocks.js',
-      'app/scripts/*.js',
-      'app/scripts/**/*.js',
-      'test/mock/**/*.js',
-      'test/spec/**/*.js',
+      'public/bower_components/angular/angular.js',
+      'public/bower_components/angular-mocks/angular-mocks.js',
+//      'test/mock/**/*.js',
+//      'test/spec/**/*.js',
 
       // Config component
-      'components/config/main.js',
+      'public/components/config/main.js',
 
       // Auth component
-      'components/auth/main.js',
-      'components/auth/services/*.js',
-      'components/auth/test/spec/services*.js'
+      'public/components/auth/main.js',
+      'public/components/auth/services/*.js',
+      'public/components/auth/test/spec/services/*.js'
 
     ],
 
