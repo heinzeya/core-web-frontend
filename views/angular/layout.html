@@ -15,7 +15,7 @@
                 <li><a ui-sref='signup'>Sign up</a></li>
             </ul>
             <ul class="nav pull-right" ng-show="authService.isAuthenticated()" ng-cloak>
-                <li><a ui-sref="profile">{{ authService.user.username }}</a></li>
+                <li><a ui-sref="profile" ng-bind="authService.user.username"></a></li>
                 <li><a href="#" ng-click="authService.logOut()">Log out</a></li>
             </ul>
         </div>
