@@ -15,7 +15,7 @@
     "angular-cookies": "*",
     "angular-sanitize": "*",
     "angular-ui-router": "*",
-    "bootstrap": "*"
+    "bootstrap": "~2.3.2"
   },
   "devDependencies": {
     "angular-mocks": "*",
