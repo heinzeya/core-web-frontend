@@ -3,9 +3,7 @@
 //=require angular-resource/angular-resource.js
 //=require angular-cookies/angular-cookies.js
 //=require angular-sanitize/angular-sanitize.js
-// require angular-ui-router/release/angular-ui-router.js
-//=require ui-router/angular-ui-router.js
-//=require ui-router/stateDirectives.js
+//=require angular-ui-router/release/angular-ui-router.js
 //=require states/states.js
 //=require auth/main.js
 //=require_self
