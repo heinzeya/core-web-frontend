@@ -78,7 +78,7 @@
     })
   };
 
-  angular.module('CoreAuth.Services')
+  angular.module('kabam.auth.services')
     .factory('authService', ['$http', 'CONFIG',
       function($http, CONFIG){
         return new AuthService($http, CONFIG);

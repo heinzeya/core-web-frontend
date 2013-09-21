@@ -1,4 +1,4 @@
-angular.module('CoreAuth.States')
+angular.module('kabam.auth.states')
   .config([
     'kabamStatesProvider',
     function(kabamStatesProvider){

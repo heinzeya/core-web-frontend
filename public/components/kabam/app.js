@@ -11,12 +11,12 @@
 
 'use strict';
 
-var dependencies = ['ui.router', 'CoreAuth.Services', 'CoreAuth.Controllers', 'CoreAuth.States', 'kabam.states'];
+var dependencies = ['ui.router', 'kabam.auth.services', 'kabam.auth.controllers', 'kabam.auth.states', 'kabam.states'];
 if (window.moduleDependencies && Array.isArray(window.moduleDependencies)) {
   dependencies = dependencies.concat(window.moduleDependencies);
 }
 
-angular.module('CoreFrontend', dependencies)
+angular.module('kabam', dependencies)
   .config([
     '$stateProvider', '$urlRouterProvider', '$locationProvider', 'kabamStatesProvider',
     function ($stateProvider, $urlRouterProvider, $locationProvider, kabamStatesProvider) {

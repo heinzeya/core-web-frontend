@@ -6,7 +6,7 @@ describe('Service: authService', function () {
     authService,
     CONFIG;
 
-  beforeEach(module('CoreAuth.Services'));
+  beforeEach(module('kabam.auth.services'));
   
   beforeEach(function(){
     module(function($provide){

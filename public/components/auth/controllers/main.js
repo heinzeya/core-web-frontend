@@ -1,6 +1,6 @@
 (function(){
   'use strict';
-  angular.module('CoreAuth.Controllers')
+  angular.module('kabam.auth.controllers')
     .controller('GenericLoginCtrl', ['$scope', 'authService', function($scope, authService){
       $scope.username = null;
       $scope.password = null;

@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  angular.module('CoreAuth.Services')
+  angular.module('kabam.auth.services')
     .provider('guard',
       /**
        * @name guardProvider

@@ -8,5 +8,5 @@
    * assigning JSON object to the `window.CONFIG` property, which we read
    * and assign it to the CONFIG constant.
    */
-  angular.module('CoreFrontend.Config', []).constant('CONFIG', window.CONFIG);
+  angular.module('kabam.config', []).constant('CONFIG', window.CONFIG);
 })();

@@ -3,7 +3,7 @@
 describe('Service: guard', function () {
   var guard;
 
-  beforeEach(module('CoreAuth.Services'));
+  beforeEach(module('kabam.auth.services'));
   beforeEach(module('ui.router'));
 
   beforeEach(inject(function(_guard_){
