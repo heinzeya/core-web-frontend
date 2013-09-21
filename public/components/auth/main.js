@@ -7,7 +7,7 @@
 //= require      ./states
 //= require      ./directives
 
-angular.module('kabam.auth.services', ['kabam.config', 'kabam.flash']);
+angular.module('kabam.auth.services', ['kabam.config', 'kabam.flash', 'sessionStorage']);
 angular.module('kabam.auth.controllers', []);
 angular.module('kabam.auth.states', ['kabam.states']);
 angular.module('kabam.auth.directives', ['sessionStorage']);

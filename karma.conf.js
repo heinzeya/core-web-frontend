@@ -22,7 +22,14 @@ module.exports = function(config) {
       // Auth component
       'public/components/auth/main.js',
       'public/components/auth/services/*.js',
-      'public/components/auth/test/spec/services/*.js'
+      'public/components/auth/test/spec/services/*.js',
+
+      // flash component
+      'public/components/flash/main.js',
+
+      // sessionStorage component
+      'public/components/storage/sessionStorage.js',
+      'public/components/storage/test/spec/*.js'
 
     ],
 

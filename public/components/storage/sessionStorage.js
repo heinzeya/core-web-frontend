@@ -6,6 +6,6 @@ angular.module('sessionStorage', []).factory('sessionStorage', function(){
     getItem: function(key){
       return JSON.parse(sessionStorage.getItem(key));
     },
-    removeItem: sessionStorage.removeItem.bind(sessionStorage)
+    removeItem: angular.bind(sessionStorage, sessionStorage.removeItem)
   }
 });
