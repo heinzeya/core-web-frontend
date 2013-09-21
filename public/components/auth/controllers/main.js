@@ -13,7 +13,7 @@
         authService.logIn($scope.username, $scope.password).error(function(data, status, headers, config){
           $scope.errors = data.errors;
         })
-      }
+      };
       $scope.showHead = true;
     }])
     .controller('GenericSignupCtrl', ['$scope', 'authService', function($scope, authService){
