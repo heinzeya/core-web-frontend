@@ -9,7 +9,7 @@ describe('Service: authService', function () {
   beforeEach(module('CoreAuth.Services'));
   
   beforeEach(function(){
-    angular.mock.module(function($provide){
+    module(function($provide){
       $provide.constant('CONFIG', {
         signUpURL:'/auth/signup',
         loginURL:'/auth/login',
