@@ -13,14 +13,18 @@
         this.defaultState = 'index';
         this.onLoggedOutState = 'login';
         this.$get = [
-          '$rootScope', '$state', 'authService',
+          '$rootScope', '$window', '$location', '$state', 'authService', 'sessionStorage', 'flash',
           /**
            * @param {angular.$rootScope} $rootScope
+           * @param {angular.$window} $window
+           * @param {angular.$location} $location
            * @param {$state} $state
            * @param {authService} authService
+           * @param {sessionStorage} sessionStorage
+           * @param {flash} flash
            * @returns {{watch: Function}}
            */
-            function ($rootScope, $state, authService) {
+            function ($rootScope, $window, $location,  $state, authService, sessionStorage, flash) {
             var _this = this;
             return {
               /**
@@ -28,13 +32,35 @@
                * @description Listens for stage change events and prevents from navigating to private states
                */
               watch: function () {
+                var
+                  redirect = sessionStorage.getItem('redirect'),
+                  offStateChangeSuccess;
+
+                if(redirect) {
+                  sessionStorage.removeItem('redirect');
+                  if(flash.get('success')){
+                    $location.path(redirect.success);
+                  } else {
+                    $location.path(redirect.failure);
+                  }
+                }
+
+                // if we have flashed messaged we should empty them after loading the state, so that we don't  have
+                // flashed messages for the next location
+                if(flash.keys().length){
+                  offStateChangeSuccess = $rootScope.$on("$stateChangeSuccess", function(){
+                    flash.clear();
+                    offStateChangeSuccess()
+                  });
+                }
+
                 authService.onUncompletedProfile = function (user) {
                   $state.go(_this.incompleteProfileState);
                 };
 
                 //TODO: maybe we need a user service for that
-                if (window.USER && Object.keys(window.USER).length > 0) {
-                  authService.authenticate(window.USER);
+                if ($window.USER && Object.keys($window.USER).length > 0) {
+                  authService.authenticate($window.USER);
                 }
 
                 $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
