@@ -15,6 +15,22 @@ describe('Service: sessionStorage', function () {
       sessionStorage.setItem('key2', {ololo: true});
       expect(window.sessionStorage.getItem('key2')).toBe('{"ololo":true}');
     });
-  })
+  });
+
+  describe('#getItem', function(){
+    it('should return an object for a given key', function(){
+      sessionStorage.setItem('key', {ololo: true});
+      expect(sessionStorage.getItem('key')).toEqual({ololo: true});
+    })
+  });
+
+  describe('#removeItem', function(){
+    it('should delete object from storage', function(){
+      sessionStorage.setItem('key', {ololo: true});
+      expect(sessionStorage.getItem('key')).toEqual({ololo: true});
+      sessionStorage.removeItem('key');
+      expect(sessionStorage.getItem('key')).toEqual(null);
+    })
+  });
 
 });
