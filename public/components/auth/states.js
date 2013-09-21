@@ -23,6 +23,13 @@ angular.module('kabam.auth.states')
           templateUrl: '/assets/auth/views/signup.html',
           controller: 'GenericSignupCtrl',
           loginRequired: false
+        },
+        {
+          name: 'passwordRecovery',
+          url: '/recover-password',
+          templateUrl: '/assets/auth/views/recovery.html',
+          controller: 'GenericPasswordRecoveryCtrl',
+          loginRequired: false
         }
       ])
     }

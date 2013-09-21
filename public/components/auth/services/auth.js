@@ -70,11 +70,16 @@
   };
 
   AuthService.prototype.signUp = function(username, email, password){
-    var _this = this;
     return this.$http.post(this.CONFIG.signUpURL, {
       username: username,
       email: email,
       password:password
+    })
+  };
+
+  AuthService.prototype.recover = function(usernameOrEmail){
+    return this.$http.post(this.CONFIG.recoveryURL, {
+      email: usernameOrEmail
     })
   };
 

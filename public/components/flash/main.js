@@ -1,3 +1,4 @@
+// TODO: tests
 angular.module('kabam.flash', [])
   .factory('flash', [
     '$window',

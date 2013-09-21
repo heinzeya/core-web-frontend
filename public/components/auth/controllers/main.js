@@ -30,7 +30,7 @@
       $scope.signup = function(){
         authService.signUp($scope.username, $scope.email, $scope.password)
           .success(function(data, status, headers, config){
-            $scope.message = "Successfully signed up. Check your email for confirmation"
+            $scope.message = 'Successfully signed up. Check your email for confirmation'
           })
           .error(function(data, status, headers, config){
             $scope.errors = data.errors;
@@ -38,4 +38,20 @@
       };
       $scope.showHead = true;
     }])
+    .controller('GenericPasswordRecoveryCtrl', [
+      '$scope', 'authService',
+      function($scope, authService){
+        $scope.usernameOrEmail = null;
+        $scope.error = null;
+        $scope.recover = function(){
+          authService.recover($scope.usernameOrEmail)
+            .error(function(data){
+              $scope.error = data.error || 'Cannot find a user with such username or email';
+            })
+            .success(function(data, status, headers, config){
+              $scope.message = 'Check your email for further instructions'
+            })
+        };
+      }
+    ])
 })();
