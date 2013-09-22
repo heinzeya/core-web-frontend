@@ -30,6 +30,12 @@ angular.module('kabam.auth.states')
           templateUrl: '/assets/auth/views/recovery.html',
           controller: 'GenericPasswordRecoveryCtrl',
           loginRequired: false
+        },
+        {
+          name: 'profile',
+          url: "/profile",
+          templateUrl: '/assets/auth/views/profile.html',
+          controller: 'GenericProfileCtrl'
         }
       ])
     }

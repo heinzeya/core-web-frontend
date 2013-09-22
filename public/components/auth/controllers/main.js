@@ -41,6 +41,7 @@
       function($scope, authService){
         $scope.usernameOrEmail = null;
         $scope.error = null;
+        $scope.message = null;
         $scope.recover = function(){
           authService.recover($scope.usernameOrEmail)
             .error(function(data){
@@ -51,5 +52,11 @@
             });
         };
       }
-    ]);
+    ])
+    .controller('GenericProfileCtrl', [
+      '$scope', 'authService',
+      function($scope, authService){
+        $scope.user = authService.user;
+      }
+    ])
 })();

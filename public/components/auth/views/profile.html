@@ -33,5 +33,25 @@
         <div class="span8" ng-show="authService.user.profileComplete">
             <h2>Profile complete</h2>
         </div>
+        <div class="span4">
+            <div class="control-group">
+                <div ng-show="user.keychain.github">Github profile attached: {{ user.keychain.github }}</div>
+                <div ng-hide="user.keychain.github">
+                    <a auth-strategy="github" success-redirect="/profile" class="btn">Attach Github profile</a>
+                </div>
+            </div>
+            <div class="control-group">
+                <div ng-show="user.keychain.twitter">Twitter profile attached: {{ user.keychain.twitter }}</div>
+                <div ng-hide="user.keychain.twitter">
+                    <a auth-strategy="twitter" success-redirect="/profile" class="btn">Attach Twitter profile</a>
+                </div>
+            </div>
+            <div class="control-group">
+                <div ng-show="user.keychain.facebook">Facebook profile attached: {{ user.keychain.facebook }}</div>
+                <div ng-hide="user.keychain.facebook">
+                    <a auth-strategy="facebook" success-redirect="/profile" class="btn">Attach Facebook profile</a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

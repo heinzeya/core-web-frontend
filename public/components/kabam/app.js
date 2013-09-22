@@ -20,13 +20,6 @@ angular.module('kabam', dependencies)
   .config([
     '$stateProvider', '$urlRouterProvider', '$locationProvider', 'kabamStatesProvider',
     function ($stateProvider, $urlRouterProvider, $locationProvider, kabamStatesProvider) {
-
-      kabamStatesProvider.push({
-        name: 'profile',
-        url: "/profile",
-        templateUrl: '/assets/kabam/views/profile.html'
-      });
-
       // add all states that were registered in other modules
       for(var s in kabamStatesProvider.states){
         $stateProvider.state(kabamStatesProvider.states[s]);
