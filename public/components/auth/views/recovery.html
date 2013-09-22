@@ -29,7 +29,19 @@
             </form>
         </div>
         <div class="span4">
-            <a auth-strategy="google" success-redirect="/profile" class="btn">Login with Google</a>
+            <p>If you have attached the following services to your account you can use them to login</p>
+            <div class="control-group">
+                <a auth-strategy="google" success-redirect="/profile" class="btn">Login with Google</a>
+            </div>
+            <div class="control-group">
+                <a auth-strategy="github" success-redirect="/profile" class="btn">Login with Github</a>
+            </div>
+            <div class="control-group">
+                <a auth-strategy="twitter" success-redirect="/profile" class="btn">Login with Twitter</a>
+            </div>
+            <div class="control-group">
+                <a auth-strategy="facebook" success-redirect="/profile" class="btn">Login with Facebook</a>
+            </div>
         </div>
     </div>
 </div>
