@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="span12">
-            <h1>Profile</h1>
+            <h1>Profile <small ng-show="user.profileComplete"><a ui-sref="profileEdit">Edit</a></small></h1>
         </div>
         <div class="span8" ng-hide="authService.user.profileComplete">
             <h1>Please, complete your profile!</h1>
@@ -31,7 +31,20 @@
             </form>
         </div>
         <div class="span8" ng-show="authService.user.profileComplete">
-            <h2>Profile complete</h2>
+            <div>
+                <dl>
+                    <dt>Email:</dt>
+                    <dd>{{ user.email }}</dd>
+                    <dt>Username:</dt>
+                    <dd>{{ user.username }}</dd>
+                    <dt>First Name:</dt>
+                    <dd>{{ user.firstName }}</dd>
+                    <dt>Last Name:</dt>
+                    <dd>{{ user.lastName }}</dd>
+                    <dt>Skype:</dt>
+                    <dd>{{ user.skype }}</dd>
+                </dl>
+            </div>
         </div>
         <div class="span4">
             <div class="control-group">

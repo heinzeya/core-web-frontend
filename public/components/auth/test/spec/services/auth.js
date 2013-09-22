@@ -14,8 +14,9 @@ describe('Service: authService', function () {
         signUpURL:'/auth/signup',
         loginURL:'/auth/login',
         logoutURL:'/auth/logout',
-        recoveryURL: '/auth/restoreAccount'
-      })
+        recoveryURL: '/auth/restoreAccount',
+        profileEditURL: '/auth/profile'
+      });
     });
   });
 
@@ -57,7 +58,7 @@ describe('Service: authService', function () {
     it('should POST `CONFIG.loginURL`', function(){
       $httpBackend.expectPOST(CONFIG.loginURL, {username: 'joe', password: 'qweqwe'});
       authService.logIn('joe', 'qweqwe');
-      $httpBackend.flush()
+      $httpBackend.flush();
     });
     it("should  authenticate user if username and passwordsmatch", function(){
       $httpBackend.expectPOST(CONFIG.loginURL, {username: 'joe', password: 'qweqwe'});
@@ -77,7 +78,7 @@ describe('Service: authService', function () {
     it('should POST `CONFIG.signUpURL`', function(){
       $httpBackend.expectPOST(CONFIG.signUpURL, {username: 'joe', email: 'joe@doe.com', password: 'qweqwe'}).respond(201);
       authService.signUp('joe', 'joe@doe.com', 'qweqwe');
-      $httpBackend.flush()
+      $httpBackend.flush();
     });
   });
 
@@ -105,5 +106,54 @@ describe('Service: authService', function () {
       $httpBackend.flush();
     });
   });
+
+  describe('#save', function(){
+    it('should POST `CONFIG.profileEditURL`', function(){
+      $httpBackend.expectPOST(CONFIG.profileEditURL, {
+        username: 'joe',
+        email: 'joe@doe.com',
+        firstName: 'John',
+        lastName: 'Legend'
+      }).respond(201, {
+        username: 'joe',
+        email: 'joe@doe.com',
+        firstName: 'John',
+        lastName: 'Legend'
+      });
+      authService.save({
+        username: 'joe',
+        email: 'joe@doe.com',
+        firstName: 'John',
+        lastName: 'Legend'
+      });
+      $httpBackend.flush();
+    });
+    it('should replace authService.user with the returned one', function(){
+      $httpBackend.expectPOST(CONFIG.profileEditURL, {
+        username: 'joe',
+        email: 'joe@travolta.com',
+        firstName: 'John',
+        lastName: 'Travolta'
+      }).respond(201, {
+        username: 'joe',
+        email: 'joe@legend.com',
+        firstName: 'John',
+        lastName: 'Legend'
+      });
+      authService.save({
+        username: 'joe',
+        email: 'joe@travolta.com',
+        firstName: 'John',
+        lastName: 'Travolta'
+      });
+      $httpBackend.flush();
+      expect(authService.user).toEqual({
+        username: 'joe',
+        email: 'joe@legend.com',
+        firstName: 'John',
+        lastName: 'Legend'
+      });
+    })
+  })
 
 });

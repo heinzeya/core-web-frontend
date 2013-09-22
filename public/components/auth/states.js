@@ -36,6 +36,12 @@ angular.module('kabam.auth.states')
           url: "/profile",
           templateUrl: '/assets/auth/views/profile.html',
           controller: 'GenericProfileCtrl'
+        },
+        {
+          name: 'profileEdit',
+          url: '/profile/edit',
+          templateUrl: '/assets/auth/views/profile-edit.html',
+          controller: 'GenericProfileCtrl'
         }
       ])
     }

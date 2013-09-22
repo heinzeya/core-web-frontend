@@ -83,6 +83,21 @@
     })
   };
 
+  /**
+   * @description
+   * Given a user object containing new fields, tries to save it using the API and if request was successful updates
+   * current user object with new fields.
+   * @param user User object
+   */
+  AuthService.prototype.save = function(user){
+    var _this = this;
+    // Profile edit endpoint should always return a user profile that we can save, so that we always have correct
+    // user profile on the frontend
+    return this.$http.post(this.CONFIG.profileEditURL, user).success(function(data){
+      _this.user = data;
+    })
+  };
+
   angular.module('kabam.auth.services')
     .factory('authService', ['$http', 'CONFIG',
       function($http, CONFIG){
