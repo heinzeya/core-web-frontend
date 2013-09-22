@@ -13,7 +13,8 @@ describe('Service: authService', function () {
       $provide.constant('CONFIG', {
         signUpURL:'/auth/signup',
         loginURL:'/auth/login',
-        logoutURL:'/auth/logout'
+        logoutURL:'/auth/logout',
+        recoveryURL: '/auth/restoreAccount'
       })
     });
   });
@@ -95,6 +96,14 @@ describe('Service: authService', function () {
       $httpBackend.flush();
       expect(authService.onloggedout).toHaveBeenCalled();
     })
-  })
+  });
+
+  describe('#recover', function(){
+    it('should POST `CONFIG.recoveryURL`', function(){
+      $httpBackend.expectPOST(CONFIG.recoveryURL).respond(200);
+      authService.recover('john@legend.com');
+      $httpBackend.flush();
+    });
+  });
 
 });
