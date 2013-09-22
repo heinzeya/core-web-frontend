@@ -11,9 +11,10 @@
             <button class="btn" ng-click="login()">Log in</button>
             <div>
                 <br/>
-                <a href="/auth/google?success=/auth/google" class="btn">Login With Google</a>
+                <a auth-strategy="google" success-redirect="/profile" class="btn">Login With Google</a>
             </div>
             <div>
+                <br/>
                 <a ui-sref="passwordRecovery">Forgot password?</a>
             </div>
         </div>
