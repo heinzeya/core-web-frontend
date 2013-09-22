@@ -12,9 +12,8 @@
       $scope.login = function(){
         authService.logIn($scope.username, $scope.password).error(function(data, status, headers, config){
           $scope.errors = data.errors;
-        })
+        });
       };
-      $scope.showHead = true;
     }])
     .controller('GenericSignupCtrl', ['$scope', 'authService', function($scope, authService){
       $scope.message = null;
@@ -30,13 +29,12 @@
       $scope.signup = function(){
         authService.signUp($scope.username, $scope.email, $scope.password)
           .success(function(data, status, headers, config){
-            $scope.message = 'Successfully signed up. Check your email for confirmation'
+            $scope.message = 'Successfully signed up. Check your email for confirmation';
           })
           .error(function(data, status, headers, config){
             $scope.errors = data.errors;
-          })
+          });
       };
-      $scope.showHead = true;
     }])
     .controller('GenericPasswordRecoveryCtrl', [
       '$scope', 'authService',
@@ -49,9 +47,9 @@
               $scope.error = data.error || 'Cannot find a user with such username or email';
             })
             .success(function(data, status, headers, config){
-              $scope.message = 'Check your email for further instructions'
-            })
+              $scope.message = 'Check your email for further instructions';
+            });
         };
       }
-    ])
+    ]);
 })();
