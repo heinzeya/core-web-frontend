@@ -93,8 +93,17 @@
     var _this = this;
     // Profile edit endpoint should always return a user profile that we can save, so that we always have correct
     // user profile on the frontend
-    return this.$http.post(this.CONFIG.profileEditURL, user).success(function(data){
-      _this.user = data;
+    // FIXME: temporary fields
+    return this.$http.post(this.CONFIG.profileEditURL, {
+      firstName: user.firstName,
+      lastName: user.lastName,
+      skype: user.skype,
+      password1: user.password1,
+      password2: user.password2
+    }).success(function(data){
+//      _this.user = data;
+      delete _this.user.password1;
+      delete _this.user.password2;
     })
   };
 
