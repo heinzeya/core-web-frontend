@@ -1,0 +1,47 @@
+.navbar .btn {
+  background: white;
+  border-radius: 15px;
+  border: none;
+  height: 23px;
+  line-height: 16px;
+
+  color: @green;
+  font-size: 12px;
+  font-weight: bold;
+
+  .navbarVerticalAlign(23px);
+}
+
+.navbar-search {
+  .search-query {
+    line-height: inherit;
+    background: transparent url('../images/icons/search.png') no-repeat;
+    background-position: 0px 7px;
+    border: 0;
+    box-shadow: none;
+    color: #51dd8c;
+    padding-left: 20px;
+
+    &:focus {
+      border: none;
+      box-shadow: none;
+    }
+  }
+  //noinspection CssInvalidPseudoSelector
+  input:-moz-placeholder,
+  textarea:-moz-placeholder {
+    color: #51dd8c;
+  }
+
+  //noinspection CssInvalidPseudoSelector
+  input:-ms-input-placeholder,
+  textarea:-ms-input-placeholder {
+    color: #51dd8c;
+  }
+
+  //noinspection CssInvalidPseudoSelector
+  input::-webkit-input-placeholder,
+  textarea::-webkit-input-placeholder {
+    color: #51dd8c;
+  }
+}
