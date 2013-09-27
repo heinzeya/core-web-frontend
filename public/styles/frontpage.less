@@ -80,8 +80,7 @@
       }
       input[type="text"],
       input[type="email"],
-      input[type="password"],
-      button {
+      input[type="password"] {
         width: 100%;
         height: 40px;
         border-radius: 0;
@@ -89,19 +88,33 @@
       input {
         border: 2px solid #d7f5e3;
       }
-      button {
-        background: @green;
+      button, a.btn {
+        width: 100%;
+        height: 40px;
         margin-bottom: 5px;
+        color: @white;
         font-size: 20px;
         font-weight: 200;
-        color: @white;
         text-shadow: none;
         border: none;
         box-shadow: none;
       }
+      button {
+        border-radius: 0;
+        background: @green;
+      }
       .help-block {
         font-size: 12px;
         text-align: center;
+      }
+      .signin-providers {
+        display: block;
+        text-align: center;
+        margin-bottom: 3px;
+      }
+      a.btn {
+        background: #dd4b39;
+        line-height: 32px;
       }
     }
   }
@@ -137,4 +150,13 @@ ul.fp__img-polaroid-container {
   padding: 10px;
   border: none;
   box-shadow: none;
+}
+
+
+.fp__flash {
+  .alert {
+    margin: 0;
+    border-radius: 0;
+    text-align: center;
+  }
 }
