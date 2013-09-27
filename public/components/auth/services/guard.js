@@ -55,7 +55,11 @@
                 }
 
                 authService.onUncompletedProfile = function (user) {
-                  $state.go(_this.incompleteProfileState);
+                  // Since run block runs before running ui-router urlmatcher we need to postpone transitioning to
+                  // incompleteProfileState or otherwise such transition will be superseded by index state
+                  setTimeout(function(){
+                    $state.go(_this.incompleteProfileState);
+                  }, 0);
                 };
 
                 //TODO: maybe we need a user service for that
