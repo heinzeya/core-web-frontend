@@ -54,14 +54,33 @@
       }
     ])
     .controller('GenericProfileCtrl', [
-      '$scope', 'authService',
-      function($scope, authService){
+      '$scope', '$state', 'authService',
+      function($scope, $state, authService){
         // We don't want to keep changes in the model if user changed some fields in profile edit, but not yet saved it.
         $scope.user = angular.copy(authService.user);
+
+        $scope.complete = function(){
+          authService.completeProfile($scope.user.username, $scope.user.password)
+            .success(function(){})
+            .error(function(data){
+              $scope.errors = data
+            })
+        };
+
         $scope.save = function(){
           authService.save($scope.user)
-            .success(function(data, status, headers, config){})
-            .error(function(data, status, headers, config){})
+            .success(function(data, status, headers, config){
+              $state.go('profile');
+            })
+            .error(function(data, status, headers, config){
+              $scope.errors = data;
+            })
+            .then(function(){
+              console.log('success', arguments)
+            }, function(errors){
+              $scope.errors = errors;
+              console.log('error', arguments);
+            })
         };
       }
     ])

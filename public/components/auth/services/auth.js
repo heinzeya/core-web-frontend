@@ -3,13 +3,15 @@
 
   /**
    * @name authService
+   * @param {angular.$q} $q
    * @param {angular.$http} $http
    * @param {String} CONFIG Configuration object
    * @param {String} CONFIG.logoutUrl url for the logout
    * @constructor
    * @exports
    */
-  var AuthService = function($http, CONFIG){
+  var AuthService = function($q, $http, CONFIG){
+    this.$q = $q;
     this.$http = $http;
     this.CONFIG = CONFIG;
     // user object
@@ -83,6 +85,14 @@
     })
   };
 
+  AuthService.prototype.completeProfile = function(username, password){
+    var _this = this;
+    return this.$http.post(this.CONFIG.profileCompleteUrl, {username:username, password:password})
+      .success(function(data){
+        _this.user = data;
+      });
+  };
+
   /**
    * @description
    * Given a user object containing new fields, tries to save it using the API and if request was successful updates
@@ -90,27 +100,34 @@
    * @param user User object
    */
   AuthService.prototype.save = function(user){
-    var _this = this;
+    var _this = this, deferred;
     // Profile edit endpoint should always return a user profile that we can save, so that we always have correct
     // user profile on the frontend
     // FIXME: temporary fields
-    return this.$http.post(this.CONFIG.profileEditURL, {
-      firstName: user.firstName,
-      lastName: user.lastName,
-      skype: user.skype,
-      password1: user.password1,
-      password2: user.password2
-    }).success(function(data){
-//      _this.user = data;
-      delete _this.user.password1;
-      delete _this.user.password2;
+
+    // If we detected password1 field we assume user entered new password and we should match it
+    if(user.password1) {
+      if(user.password1 != user.password2){
+        deferred = this.$q.defer();
+        deferred.reject({error: {password2: 'Password confirmation should match password'}});
+        return deferred.promise;
+      } else {
+        user.password = user.password1;
+        // remove passwords from user objects for security reasons
+        delete user.password1;
+        delete user.password2;
+      }
+    }
+
+    return this.$http.post(this.CONFIG.profileEditURL, user).success(function(data){
+      _this.user = data;
     })
   };
 
   angular.module('kabam.auth.services')
-    .factory('authService', ['$http', 'CONFIG',
-      function($http, CONFIG){
-        return new AuthService($http, CONFIG);
+    .factory('authService', ['$q', '$http', 'CONFIG',
+      function($q, $http, CONFIG){
+        return new AuthService($q, $http, CONFIG);
       }
     ]);
 })();

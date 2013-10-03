@@ -108,6 +108,27 @@ describe('Service: authService', function () {
   });
 
   describe('#save', function(){
+    it("should return error if password1 doesn't match password2", function(){
+      var error;
+
+      runs(function(){
+        inject(function($rootScope){
+          authService.save({password1: 'ololo', password2: 'trololo'}).then(null, function(data){
+            error = data;
+          });
+          $rootScope.$apply();
+        });
+
+      });
+
+      waitsFor(function(){
+        return error !== undefined;
+      }, 'failed', 1000);
+
+      runs(function(){
+        expect(error).toEqual({error: {password2: 'Password confirmation should match password'}});
+      })
+    });
     it('should POST `CONFIG.profileEditURL`', function(){
       $httpBackend.expectPOST(CONFIG.profileEditURL, {
         username: 'joe',
