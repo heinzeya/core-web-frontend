@@ -113,7 +113,7 @@ describe('Service: authService', function () {
 
       runs(function(){
         inject(function($rootScope){
-          authService.save({password1: 'ololo', password2: 'trololo'}).then(null, function(data){
+          authService.save({newPassword1: 'ololo', newPassword2: 'trololo'}).then(null, function(data){
             error = data;
           });
           $rootScope.$apply();
@@ -126,7 +126,7 @@ describe('Service: authService', function () {
       }, 'failed', 1000);
 
       runs(function(){
-        expect(error).toEqual({error: {password2: 'Password confirmation should match password'}});
+        expect(error).toEqual({errors: {newPassword2: 'Password confirmation should match password'}});
       })
     });
     it('should POST `CONFIG.profileEditURL`', function(){

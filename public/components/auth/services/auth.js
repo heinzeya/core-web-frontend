@@ -101,24 +101,19 @@
    */
   AuthService.prototype.save = function(user){
     var _this = this, deferred;
-    // Profile edit endpoint should always return a user profile that we can save, so that we always have correct
-    // user profile on the frontend
-    // FIXME: temporary fields
-
     // If we detected password1 field we assume user entered new password and we should match it
-    if(user.password1) {
-      if(user.password1 != user.password2){
+    if(user.newPassword1 || user.newPassword2) {
+      if(user.newPassword1 != user.newPassword2){
         deferred = this.$q.defer();
-        deferred.reject({error: {password2: 'Password confirmation should match password'}});
+        deferred.reject({errors: {newPassword2: 'Password confirmation should match password'}});
         return deferred.promise;
       } else {
-        user.password = user.password1;
-        // remove passwords from user objects for security reasons
-        delete user.password1;
-        delete user.password2;
+        user.newPassword = user.newPassword1;
       }
     }
 
+    // Profile edit endpoint should always return a user profile that we can save, so that we always have correct
+    // user profile on the frontend
     return this.$http.post(this.CONFIG.profileEditURL, user).success(function(data){
       _this.user = data;
     })

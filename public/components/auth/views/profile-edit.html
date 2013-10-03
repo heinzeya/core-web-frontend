@@ -23,16 +23,24 @@
                         <input type="text" ng-model="user.lastName" placeholder="Last Name" id="inputLastName">
                     </div>
                 </div>
-                <div class="control-group">
-                    <label class="control-label" for="inputPassword1">Password</label>
+                <div class="control-group" ng-class="{ error: errors.password}">
+                    <label class="control-label" for="inputPassword">Current password</label>
                     <div class="controls">
-                        <input type="password" ng-model="user.password1" placeholder="Password" id="inputPassword1">
+                        <input type="password" ng-model="user.password" placeholder="Password" id="inputPassword">
+                        <span class="help-inline" ng-show="errors.password">{{ errors.password }}</span>
                     </div>
                 </div>
-                <div class="control-group">
-                    <label class="control-label" for="inputPassword2">Password repeat</label>
+                <div class="control-group" >
+                    <label class="control-label" for="inputPassword1">New password</label>
                     <div class="controls">
-                        <input type="password" ng-model="user.password2" placeholder="Password repeat" id="inputPassword2">
+                        <input type="password" ng-model="user.newPassword1" placeholder="Password" id="inputPassword1">
+                    </div>
+                </div>
+                <div class="control-group" ng-class="{ error: errors.newPassword2}">
+                    <label class="control-label" for="inputPassword2">New password repeat</label>
+                    <div class="controls">
+                        <input type="password" ng-model="user.newPassword2" placeholder="Password repeat" id="inputPassword2">
+                        <span class="help-inline" ng-show="errors.newPassword2">{{ errors.newPassword2 }}</span>
                     </div>
                 </div>
                 <div class="control-group">

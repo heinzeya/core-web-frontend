@@ -61,7 +61,9 @@
 
         $scope.complete = function(){
           authService.completeProfile($scope.user.username, $scope.user.password)
-            .success(function(){})
+            .success(function(){
+              $state.go('profile');
+            })
             .error(function(data){
               $scope.errors = data
             })
@@ -69,16 +71,18 @@
 
         $scope.save = function(){
           authService.save($scope.user)
-            .success(function(data, status, headers, config){
-              $state.go('profile');
-            })
-            .error(function(data, status, headers, config){
-              $scope.errors = data;
-            })
             .then(function(){
-              console.log('success', arguments)
-            }, function(errors){
-              $scope.errors = errors;
+              $state.go('profile');
+            }, function(result){
+              // clear previous errors
+              $scope.errors = null;
+              // http response
+              if(result.status) {
+                $scope.errors = result.data.errors;
+              // password confirmation errors
+              } else {
+                $scope.errors = result.errors;
+              }
               console.log('error', arguments);
             })
         };
