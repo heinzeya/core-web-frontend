@@ -5,27 +5,26 @@
         </div>
         <div class="span8" ng-hide="authService.user.profileComplete">
             <h1>Please, complete your profile!</h1>
-            <p>Set your login and password.</p>
-            <p>{{ authService.user.email }}</p>
+            <p>Set your first and last name</p>
             <form>
                 <div class="control-group">
-                    <label class="control-label" for="inputUsername">Username</label>
+                    <label class="control-label" for="inputFirstName">First Name</label>
                     <div class="controls">
-                        <input type="text" class="act" id="inputUsername" name="username"
-                               pattern="^[a-zA-Z0-9_]{3,32}$" placeholder="Username" ng-model="user.username"/>
+                        <input type="text" class="act" id="inputFirstName" name="firstName"
+                               pattern="^[a-zA-Z0-9_]{3,32}$" placeholder="First Name" ng-model="user.firstName"/>
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label" for="inputPasswordLogin">Password</label>
+                    <label class="control-label" for="inputLastName">Last Name</label>
                     <div class="controls">
-                        <input type="password" name="password" id="inputPasswordLogin"
-                               placeholder="Password" ng-model="user.password">
+                        <input type="text" name="password" id="inputLastName"
+                               placeholder="Last Name" ng-model="user.lastName">
                     </div>
                 </div>
 
                 <div class="control-group">
                     <div class="controls">
-                        <input type="submit" value="Save" class="btn btn-success" ng-click="complete()"/>
+                        <input type="submit" value="Save" class="btn btn-success" ng-click="save()"/>
                     </div>
                 </div>
             </form>

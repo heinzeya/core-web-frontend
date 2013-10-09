@@ -59,16 +59,6 @@
         // We don't want to keep changes in the model if user changed some fields in profile edit, but not yet saved it.
         $scope.user = angular.copy(authService.user);
 
-        $scope.complete = function(){
-          authService.completeProfile($scope.user.username, $scope.user.password)
-            .success(function(){
-              $state.go('profile');
-            })
-            .error(function(data){
-              $scope.errors = data
-            })
-        };
-
         $scope.save = function(){
           authService.save($scope.user)
             .then(function(){
