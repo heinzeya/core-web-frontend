@@ -13,7 +13,7 @@
         this.defaultState = 'index';
         this.onLoggedOutState = 'login';
         this.$get = [
-          '$rootScope', '$window', '$location', '$state', 'authService', 'sessionStorage', 'flash',
+          '$rootScope', '$window', '$timeout', '$location', '$state', 'authService', 'sessionStorage', 'flash',
           /**
            * @param {angular.$rootScope} $rootScope
            * @param {angular.$window} $window
@@ -24,7 +24,7 @@
            * @param {flash} flash
            * @returns {{watch: Function}}
            */
-            function ($rootScope, $window, $location,  $state, authService, sessionStorage, flash) {
+            function ($rootScope, $window, $timeout, $location,  $state, authService, sessionStorage, flash) {
             var _this = this;
             return {
               /**
@@ -57,7 +57,7 @@
                 authService.onUncompletedProfile = function (user) {
                   // Since run block runs before running ui-router urlmatcher we need to postpone transitioning to
                   // incompleteProfileState or otherwise such transition will be superseded by index state
-                  setTimeout(function(){
+                  $timeout(function(){
                     $state.go(_this.incompleteProfileState);
                   }, 0);
                 };
