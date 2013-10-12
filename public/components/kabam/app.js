@@ -18,6 +18,7 @@
 
 //= require states/states.js
 //= require auth/main.js
+//= require user/main.js
 
 //= require_self
 
@@ -25,7 +26,14 @@
 
 'use strict';
 
-var dependencies = ['ui.router', 'ui.bootstrap', 'kabam.auth', 'kabam.states'];
+var dependencies = [
+  'ui.router',
+  'ui.bootstrap',
+  'kabam.auth',
+  'kabam.user',
+  'kabam.states'
+];
+
 if (window.moduleDependencies && Array.isArray(window.moduleDependencies)) {
   dependencies = dependencies.concat(window.moduleDependencies);
 }

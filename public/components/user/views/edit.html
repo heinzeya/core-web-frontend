@@ -1,0 +1,71 @@
+<h2>Edit User</h2>
+
+<div>id: {{user._id}}</div>
+
+<form name="userForm" ng-submit="save()" class="form-horizontal">
+
+  <div class="control-group">
+    <label class="control-label" for="username">Username</label>
+    <div class="controls">
+      <input ng-model="user.username" class="input-xlarge" id="username" ng-disabled="!newUser">
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label" for="email">Email</label>
+    <div class="controls">
+      <input ng-model="user.email" class="input-xlarge" id="email">
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label" for="lang">Language</label>
+    <div class="controls">
+      <select ui-select2="langOptions" ng-model="user.lang" data-placeholder="Choose users language" id="lang">
+        <option value="en">en</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label" for="group">Groups</label>
+    <div class="controls">
+      <select ui-select2 ng-model="user.group" data-placeholder="Pick a group" disabled>
+        <option value=""></option>
+        <option ng-repeat="group in groups" value="{{group._id}}">{{group.name}}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label" for="roles">Roles</label>
+    <div class="controls">
+      <select ui-select2 ng-model="user.roles" data-placeholder="Pick a role" disabled>
+        <option value=""></option>
+        <option ng-repeat="role in roles" value="{{role}}">{{role}}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="control-group checkbox">
+    <label class="control-label" for="isBanned">Banned</label>
+    <div class="controls">
+      <input type="checkbox" ng-model="user.isBanned" id="isBanned">
+    </div>
+  </div>
+
+  <div class="control-group checkbox">
+    <label class="control-label" for="root">Global Admin</label>
+    <div class="controls">
+      <input type="checkbox" ng-model="user.root" id="root">
+    </div>
+  </div>
+
+  <br>
+
+  <div class="form-actions">
+    <button class="btn btn-primary">Save</button>
+    <button type="button" ng-click="remove()" ng-show="!user.id" class="btn">Delete</button>
+  </div>
+
+</form>
