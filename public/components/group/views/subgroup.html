@@ -1,0 +1,84 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title">Add {{grouptype}}</h2>
+  </div>
+
+  <form name="groupForm" ng-submit="save()" class="form-horizontal">
+
+  <div class="control-group">
+    <label class="control-label" for="name">Name</label>
+    <div class="controls">
+      <input ng-model="group.name" class="input-xlarge" id="name" focus>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label" for="uri">URI</label>
+    <div class="controls">
+      <input ng-model="group.uri" class="input-xlarge" id="uri">
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label" for="tier">Tier</label>
+    <div class="controls">
+      <select ui-select2="tierOptions" ng-model="group.tier"  
+        id="tier" disabled>
+          <option value=""></option>
+          <option ng-repeat="type in types" value={{type.id}}>{{type.name}}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label" for="schoolname">School Name:</label>
+    <div class="controls">
+      <input ng-model="schoolname" class="input-xlarge" id="schoolname" disabled>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label" for="coursename">Course Name:</label>
+    <div class="controls">
+      <input ng-model="coursename" class="input-xlarge" id="coursename" disabled>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label" for="descriptionPublic">Public Description</label>
+    <div class="controls">
+      <textarea ng-model="group.descriptionPublic" class="form-control" id="descriptionPublic" rows="4"></textarea>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label" for="descriptionForMembers">Member Description</label>
+    <div class="controls">
+      <textarea ng-model="group.descriptionForMembers" class="form-control" id="descriptionForMembers" rows="4"></textarea>
+    </div>
+  </div>
+
+  <div class="control-group checkbox">
+    <label class="control-label" for="isHidden"><input type="checkbox" ng-model="group.isHidden" id="isHidden"> Hidden</label>
+  </div>
+
+  <div class="control-group checkbox">
+    <label class="control-label" for="isOpenToParent">
+      <input type="checkbox" ng-model="group.isOpenToParent" id="isOpen To Parent"> Open To Parent
+    </label>
+  </div>
+
+  <div class="control-group checkbox">
+    <label class="control-label" for="isOpenToAll">
+      <input type="checkbox" ng-model="group.isOpenToAll" id="isOpenToAll"> Open to All
+    </label>
+  </div>
+
+  <br>
+
+  <div class="form-actions">
+    <button class="btn btn-primary">Add</button>
+  </div>
+
+</form>
+</div>

@@ -1,4 +1,4 @@
-angular.module('kabam.user').config([
+angular.module('kabam.user.states').config([
   'kabamStatesProvider', 'RestangularProvider',
   function(kabamStatesProvider, RestangularProvider) {
     RestangularProvider.setBaseUrl('/api/rest');

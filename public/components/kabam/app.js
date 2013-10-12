@@ -19,6 +19,7 @@
 //= require states/states.js
 //= require auth/main.js
 //= require user/main.js
+//= require group/main.js
 
 //= require_self
 
@@ -31,6 +32,7 @@ var dependencies = [
   'ui.bootstrap',
   'kabam.auth',
   'kabam.user',
+  'kabam.group',
   'kabam.states'
 ];
 
