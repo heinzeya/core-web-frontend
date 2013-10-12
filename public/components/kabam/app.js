@@ -1,7 +1,7 @@
 //= require jquery/jquery.js
 //= require jquery-ui/ui/jquery-ui.js
 //= require lodash/dist/lodash.js
-// bootstrap.js
+//= require vendor/bootstrap.js
 //= require select2/select2.js
 //= require angular/angular.js
 //= require angular-resource/angular-resource.js
@@ -20,6 +20,7 @@
 //= require auth/main.js
 //= require user/main.js
 //= require group/main.js
+//= require search/main.js
 
 //= require_self
 
@@ -33,6 +34,7 @@ var dependencies = [
   'kabam.auth',
   'kabam.user',
   'kabam.group',
+  'kabam.search',
   'kabam.states'
 ];
 
