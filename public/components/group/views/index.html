@@ -1,0 +1,96 @@
+<div class="row">
+  <div class="span3">
+    <h2>&nbsp;</h2>
+    <div class="accordion" id="group-accordion">
+
+      <div class="accordion-group">
+        <h4 class="accordion-heading">
+          <a class="accordion-toggle" data-toggle="collapse" data-parent="#group-accordion" href="#collapseOne">
+            Site
+          </a>
+        </h4>
+        <div id="collapseOne" class="accordion-body collapse in">
+          <div class="panel-body">
+            <ul>
+              <li><a ui-sref="group.list">Main Organization List</a></li>
+              <li><a ui-sref="group.view({id: world._id})">Main Profile</a></li>
+              <li><a ui-sref="group.admin({id: world._id})">Admins</a></li>
+              <li><a ui-sref="group.member({id: world._id})">Members</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-group">
+        <h4 class="accordion-heading">
+          <a class="accordion-toggle" data-toggle="collapse" data-parent="#group-accordion" href="#collapseSchool1">
+            School 1
+          </a>
+        </h4>
+        <div id="collapseSchool1" class="accordion-body collapse">
+          <div class="panel-body">
+            <ul>
+              <li><a href="#">Profile</a>
+              <li><a href="#">Admins</a>
+              <li><a href="#">Members</a>
+              <li>Courses
+                <ul>
+                  <li>Course 1.1
+                    <ul>
+                      <li>Group 1.1.1</li>
+                      <li>Group 1.1.2</li>
+                    </ul>
+                  </li>
+                  <li>Course 1.2
+                    <ul>
+                      <li>Group 1.2.1</li>
+                      <li>Group 1.2.2</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-group">
+        <h4 class="accordion-heading">
+          <a class="accordion-toggle" data-toggle="collapse" data-parent="#group-accordion" href="#collapseSchool2">
+            School 2
+          </a>
+        </h4>
+        <div id="collapseSchool2" class="accordion-body collapse">
+          <div class="panel-body">
+            <ul>
+              <li><a href="#">Profile</a>
+              <li><a href="#">Admins</a>
+              <li><a href="#">Members</a>
+              <li>Courses
+                <ul>
+                  <li>Course 2.1
+                    <ul>
+                      <li>Group 2.1.1</li>
+                      <li>Group 2.1.2</li>
+                    </ul>
+                  </li>
+                  <li>Course 2.2
+                    <ul>
+                      <li>Group 2.2.1</li>
+                      <li>Group 2.2.2</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="span9">
+    <div ui-view></div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title">View Group</h2>
+  </div>
+
+  <table class="table">
+    <tr><th>id</th><td>{{group._id}}</td></tr>
+    <tr><th>name</th><td>{{group.name}}</td></tr>
+    <tr><th>uri</th><td>{{group.uri}}</td></tr>
+    <tr><th>tier</th><td>{{group.tier}}</td></tr>
+    <tr><th>schoolId</th><td>{{group.schoolId}}</td></tr>
+    <tr><th>courseId</th><td>{{group.courseId}}</td></tr>
+    <tr><th>Public Description</th><td>{{group.descriptionPublic}}</td></tr>
+    <tr><th>Member Description</th><td>{{group.descriptionForMembers}}</td></tr>
+    <tr><th>Hidden</th><td>{{group.isHidden}}</td></tr>
+    <tr><th>Open to Parent</th><td>{{group.isOpenToParent}}</td></tr>
+    <tr><th>Open to All</th><td>{{group.isOpenToAll}}</td></tr>
+    <tr><th>Admins</th><td>[list of admins]</td></tr>
+    <tr><th>Number of Members</th><td>{{ group.members.length }}</td></tr>
+    <tr><th>Sub Groups</th><td>[list of subgroups]</td></tr>
+  </table>
+
+  <div class="row panel-footer">
+    <button class="btn btn-primary" ng-click="edit()">Edit</button>
+
+    <button class="btn btn-primary" ng-click="addSubGroup()" ng-disabled="isDisabled">Add Sub Group</button>
+
+    <button class="btn btn-primary" ng-click="admin()">Manage Admins</button>
+
+    <button class="btn btn-primary" ng-click="member()">Manage Members</button>
+  </div>
+</div>

@@ -10,9 +10,23 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      'public/bower_components/jquery/jquery.js',
+      'public/bower_components/jquery-ui/ui/jquery-ui.js',
+      'public/bower_components/lodash/dist/lodash.js',
+      'public/bower_components/select2/select2.js',
       'public/bower_components/angular/angular.js',
+      'public/bower_components/angular-resource/angular-resource.js',
+      'public/bower_components/angular-cookies/angular-cookies.js',
+      'public/bower_components/angular-sanitize/angular-sanitize.js',
       'public/bower_components/angular-mocks/angular-mocks.js',
       'public/bower_components/angular-ui-router/release/angular-ui-router.js',
+      'public/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+      'public/bower_components/angular-ui-utils/modules/utils.js',
+      'public/bower_components/angular-ui-select2/src/select2.js',
+      'public/bower_components/angular-grid/ng-grid-2.0.7.debug.js',
+      'public/bower_components/fullcalendar/fullcalendar.js',
+      'public/bower_components/angular-ui-calendar/src/calendar.js',
+      'public/bower_components/restangular/dist/restangular.js',
 //      'test/mock/**/*.js',
 //      'test/spec/**/*.js',
 

@@ -1,0 +1,24 @@
+<h2>View User</h2>
+
+<table class="table table-striped">
+  <tr><th>id</th><td>{{user._id}}</td></tr>
+  <tr><th>Profile Picture</th><td><img ng-show="user.gravatar" src="{{user.gravatar}}"></td></tr>
+  <tr><th>username</th><td>{{user.username}}</td></tr>
+  <tr><th>email</th><td>{{user.email}}</td></tr>
+  <tr><th>Language</th><td>{{user.lang}}</td></tr>
+  <tr><th>roles</th><td>{{user.roles}}</td></tr>
+  <tr><th>groups</th><td>{{user.groups}}</td></tr>
+  <tr><th>Profile Completed</th><td>{{user.profileComplete}}</td></tr>
+  <tr><th>Email Verified</th><td>{{user.emailVerified}}</td></tr>
+  <tr><th>Banned</th><td>{{user.isBanned}}</td></tr>
+  <tr><th>Global Admin</th><td>{{user.root}}</td></tr>
+  <tr><th>Last Seen Online</th><td>{{user.lastSeenOnline}}</td></tr>
+  <tr><th>Currently Online</th><td>{{user.isOnline}}</td></tr>
+</table>
+
+<br>
+
+<div class="row">
+  <button class="btn btn-primary" ng-click="edit()">Edit</button>
+  <a class="btn btn-primary" href="/call/user/{{user.username}}">Call</a>
+</div>

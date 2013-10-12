@@ -1,0 +1,21 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title">Group Members</h2>
+  </div>
+
+  <div class="panel-body">
+    <h3>Organization: {{ group.name }}</h3>
+
+    <div ng-grid="gridOptions" class="grid-style"></div>
+  </div>
+
+  <div class="control-group panel-footer">
+    <label class="control-label" for="member">Member</label>
+    <div class="controls">
+      <select ui-select2 ng-model="member" data-placeholder="Add a member">
+        <option value=""></option>
+        <option ng-repeat="user in users" value="{{user._id}}">{{user.username}}</option>
+      </select>
+    </div>
+  </div>
+</div>

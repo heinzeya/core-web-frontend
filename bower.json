@@ -1,24 +1,36 @@
 {
   "name": "kabam-core-web-frontend",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "ignore": [
     "/*",
     "!public/components/*"
   ],
   "dependencies": {
-    "angular": "*",
+    "angular": "~1.2.x",
     "json3": "*",
     "jquery": "*",
     "bootstrap-sass": "*",
     "es5-shim": "*",
-    "angular-resource": "*",
-    "angular-cookies": "*",
-    "angular-sanitize": "*",
+    "angular-resource": "~1.2.x",
+    "angular-cookies": "~1.2.x",
+    "angular-sanitize": "~1.2.x",
     "angular-ui-router": "*",
-    "bootstrap": "~2.3.2"
+    "bootstrap": "~2.3.2",
+    "font-awesome": "*",
+    "angular-ui-utils": "*",
+    "angular-grid": "*",
+    "lodash": "*",
+    "angular-ui-select2": "*",
+    "angular-bootstrap": "*",
+    "angular-ui-calendar": "*",
+    "restangular": "*"
   },
   "devDependencies": {
-    "angular-mocks": "*",
-    "angular-scenario": "*"
+    "angular-mocks": "~1.2.x",
+    "angular-scenario": "~1.2.x",
+    "chai": "*"
+  },
+  "resolutions": {
+    "angular": "1.2.0-rc.2"
   }
 }

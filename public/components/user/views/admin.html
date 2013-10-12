@@ -1,0 +1,14 @@
+<h2>Group Admins</h2>
+
+<h3>Organization: {{ group.name }}</h3>
+
+<div ng-grid="gridOptions" class="grid-style"></div>
+
+<div class="control-group">
+  <label class="control-label" for="admin">Add Admin</label>
+  <div class="controls">
+    <select ui-select2 ng-model="admin" data-placeholder="Add an admin">
+      <option value=""></option>
+    </select>
+  </div>
+</div>
