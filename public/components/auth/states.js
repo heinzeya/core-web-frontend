@@ -32,6 +32,13 @@ angular.module('kabam.auth.states')
           loginRequired: false
         },
         {
+          name: 'passwordReset',
+          url: '/reset-password?key',
+          templateUrl: '/assets/auth/views/reset.html',
+          controller: 'GenericPasswordResetCtrl',
+          loginRequired: false
+        },
+        {
           name: 'profile',
           url: "/profile",
           templateUrl: '/assets/auth/views/profile.html',

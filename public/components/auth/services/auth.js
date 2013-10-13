@@ -85,6 +85,13 @@
     })
   };
 
+  AuthService.prototype.reset = function(key, password) {
+    return this.$http.post(this.CONFIG.resetURL, {
+      apiKey: key,
+      password: password
+    });
+  };
+
   AuthService.prototype.completeProfile = function(username, password){
     var _this = this;
     return this.$http.post(this.CONFIG.profileCompleteUrl, {username:username, password:password})
