@@ -6,14 +6,14 @@
     "!public/components/*"
   ],
   "dependencies": {
-    "angular": "~1.2.x",
+    "angular": "~1.2",
     "json3": "*",
     "jquery": "*",
     "bootstrap-sass": "*",
     "es5-shim": "*",
-    "angular-resource": "~1.2.x",
-    "angular-cookies": "~1.2.x",
-    "angular-sanitize": "~1.2.x",
+    "angular-resource": "~1.2",
+    "angular-cookies": "~1.2",
+    "angular-sanitize": "~1.2",
     "angular-ui-router": "*",
     "bootstrap": "~2.3.2",
     "font-awesome": "*",
@@ -26,11 +26,11 @@
     "restangular": "*"
   },
   "devDependencies": {
-    "angular-mocks": "~1.2.x",
-    "angular-scenario": "~1.2.x",
+    "angular-mocks": "~1.2",
+    "angular-scenario": "~1.2",
     "chai": "*"
   },
   "resolutions": {
-    "angular": "1.2.0-rc.2"
+    "angular": "1.2.0-rc.3"
   }
 }
