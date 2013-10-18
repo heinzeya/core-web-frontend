@@ -9,6 +9,7 @@
 //= require angular-resource/angular-resource.js
 //= require angular-cookies/angular-cookies.js
 //= require angular-sanitize/angular-sanitize.js
+//= require angular-socket-io/socket.js
 //= require angular-ui-router/release/angular-ui-router.js
 //= require angular-bootstrap/ui-bootstrap-tpls.js
 //= require angular-ui-utils/modules/utils.js
@@ -34,6 +35,8 @@
 var dependencies = [
   'ui.router',
   'ui.bootstrap',
+  'ui.notify',
+  'btford.socket-io',
   'kabam.auth',
   'kabam.user',
   'kabam.group',
@@ -59,11 +62,21 @@ angular.module('kabam', dependencies)
     }
   ])
   .run([
-    'guard', 'authService', '$rootScope', '$state', '$stateParams',
-    function(guard, authService, $rootScope, $state, $stateParams){
+    'guard', 'authService', '$rootScope', '$state', '$stateParams', '$log', 'socket', 'notificationService',
+    function(guard, authService, $rootScope, $state, $stateParams, $log, socket, notificationService) {
       $rootScope.authService = authService;
       $rootScope.$state = $state;
       $rootScope.$stateParams = $stateParams;
       guard.watch();
+
+      socket.on('broadcast', function(data) {
+        $log.log('broadcast', data);
+      });
+
+      socket.on('notify', function(data) {
+        $log.log('notify', data);
+        notificationService.notice(data.message);
+      });
+
     }
   ]);
