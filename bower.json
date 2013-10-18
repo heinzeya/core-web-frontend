@@ -23,7 +23,10 @@
     "angular-ui-select2": "*",
     "angular-bootstrap": "*",
     "angular-ui-calendar": "*",
-    "restangular": "*"
+    "restangular": "*",
+    "angular-socket-io": "*",
+    "pines-notify": "*",
+    "angular-pines-notify": "*"
   },
   "devDependencies": {
     "angular-mocks": "~1.2",
@@ -31,6 +34,6 @@
     "chai": "*"
   },
   "resolutions": {
-    "angular": "1.2.0-rc.3"
+    "angular": "~1.2"
   }
 }

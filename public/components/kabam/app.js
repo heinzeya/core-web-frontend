@@ -3,6 +3,8 @@
 //= require lodash/dist/lodash.js
 //= require vendor/bootstrap.js
 //= require select2/select2.js
+//= require pines-notify/jquery.pnotify.js
+
 //= require angular/angular.js
 //= require angular-resource/angular-resource.js
 //= require angular-cookies/angular-cookies.js
@@ -15,6 +17,7 @@
 //= require fullcalendar/fullcalendar.js
 //= require angular-ui-calendar/src/calendar.js
 //= require restangular/dist/restangular.js
+//= require angular-pines-notify/src/pnotify.js
 
 //= require states/states.js
 //= require auth/main.js

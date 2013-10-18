@@ -69,17 +69,6 @@ userControllers.controller(
         $state.go('user.edit', { id: $scope.user._id });
       };
 
-      $scope.addSubUser = function() {
-      };
-
-      $scope.admin = function() {
-        $state.go('user.admin', { id: $scope.user._id });
-      };
-
-      $scope.member = function() {
-        $state.go('user.member', { id: $scope.user._id });
-      };
-
     }
   ]
 );
@@ -87,19 +76,13 @@ userControllers.controller(
 userControllers.controller(
   'UserEditCtrl',
   [
-    '$rootScope', '$scope', '$state', '$log', 'Restangular', 'UserService', 'user',
-    function($rootScope, $scope, $state, $log, Restangular, UserService, user) {
+    '$window', '$rootScope', '$scope', '$state', '$log', 'Restangular', 'notificationService', 'UserService', 'user',
+    function($window, $rootScope, $scope, $state, $log, Restangular, notificationService, UserService, user) {
 
       $log.log('user', user);
       if (!user) {
         $scope.newUser = true;
         $scope.user = {
-          'tier': 0,
-          'schoolId': null,
-          'courseId': null,
-          'isHidden': false,
-          'isOpenToParent': true,
-          'isOpenToAll': true
         };
       } else {
         $scope.newUser = false;
@@ -125,6 +108,13 @@ userControllers.controller(
             $rootScope.$broadcast('userDataChange', $scope.user);
           });
         }
+      };
+
+      $scope.remove = function() {
+        $log.log('Delete button clicked');
+        notificationService.notice('Success');
+        // notificationService.notify({ title: 'Warning', text: 'This feature is not implemented yet' });
+        // $notification.warning('Remove User', 'This feature is not implemented yet');
       };
 
       $scope.tierOptions = {
