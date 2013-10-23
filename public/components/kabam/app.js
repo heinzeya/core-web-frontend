@@ -58,7 +58,7 @@ angular.module('kabam', dependencies)
       }
 
       $urlRouterProvider.otherwise('/');
-//      $locationProvider.html5Mode(true)
+      // $locationProvider.html5Mode(true)
     }
   ])
   .run([
@@ -71,11 +71,34 @@ angular.module('kabam', dependencies)
 
       socket.on('broadcast', function(data) {
         $log.log('broadcast', data);
+        $rootScope.$broadcast('broadcast', data);
       });
 
       socket.on('notify', function(data) {
         $log.log('notify', data);
         notificationService.notice(data.message);
+      });
+
+      $rootScope.$on('backend', function(event, args) {
+        if (args.action) {
+          args.sender = authService.user;
+          socket.emit('backend', args);
+          $log.log('event sent to backend:', args);
+        } else {
+          $log.error('invalid backend event: no action:', args);
+        }
+      });
+
+      socket.on('update', function(data) {
+        $rootScope.$broadcast('update', data);
+      });
+
+      socket.on('delete', function(data) {
+        $rootScope.$broadcast('delete', data);
+      });
+
+      socket.on('create', function(data) {
+        $rootScope.$broadcast('create', data);
       });
 
     }

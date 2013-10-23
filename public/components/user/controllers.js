@@ -16,8 +16,8 @@ userControllers.controller(
 userControllers.controller(
   'UserListCtrl',
   [
-    '$rootScope', '$scope', '$state',
-    function($rootScope, $scope, $state) {
+    '$rootScope', '$scope', '$log', '$state',
+    function($rootScope, $scope, $log, $state) {
 
       $scope.selectedItems = [];
       var linkCellTemplate = '<div class="ngCellText" ng-class="col.colIndex()">' +
@@ -46,14 +46,41 @@ userControllers.controller(
         $state.go('user.new');
       };
 
-      $rootScope.$on('userDataChange', function(event, updatedUser) {
-        var idx = _.findIndex($scope.users, { _id: updatedUser._id });
+      // $rootScope.$on('userDataChange', function(event, updatedUser) {
+      //   var idx = _.findIndex($scope.users, { _id: updatedUser._id });
+      //   if (idx >= 0) {
+      //     $scope.users[idx] = updatedUser;
+      //   } else {
+      //     $scope.users.push(updatedUser);
+      //   }
+      // });
+
+      $scope.$on('update', function(event, data) {
+        var idx = _.findIndex($scope.users, { _id: data.User._id });
         if (idx >= 0) {
-          $scope.users[idx] = updatedUser;
-        } else {
-          $scope.users.push(updatedUser);
+          $scope.$apply(function() {
+            $scope.users.splice(idx, 1, data.User);
+          });
+        }
+        $log.log($scope.users);
+      });
+
+      $scope.$on('create', function(event, data) {
+        $scope.$apply(function() {
+          $scope.users.push(data.User);
+        });
+        $log.log($scope.users);
+      });
+
+      $scope.$on('delete', function(event, data) {
+        var idx = _.findIndex($scope.users, { _id: data.id });
+        if (idx >= 0) {
+          $scope.users.splice(idx, 1);
         }
       });
+
+      $scope.$emit('backend', { action: 'subscribe', channel: 'User' });
+
     }
   ]
 );
@@ -69,6 +96,12 @@ userControllers.controller(
         $state.go('user.edit', { id: $scope.user._id });
       };
 
+      $scope.$emit('backend', { action: 'subscribe', channel: 'User:' + $scope.user._id.toString() });
+
+      $scope.$on('update', function(event, data) {
+        $scope.user = data.User;
+      });
+
     }
   ]
 );
@@ -76,8 +109,8 @@ userControllers.controller(
 userControllers.controller(
   'UserEditCtrl',
   [
-    '$window', '$rootScope', '$scope', '$state', '$log', 'Restangular', 'notificationService', 'UserService', 'user',
-    function($window, $rootScope, $scope, $state, $log, Restangular, notificationService, UserService, user) {
+    '$window', '$rootScope', '$scope', '$state', '$log', 'Restangular', 'notificationService', 'UserService', 'user', 'authService',
+    function($window, $rootScope, $scope, $state, $log, Restangular, notificationService, UserService, user, authService) {
 
       $log.log('user', user);
       if (!user) {
@@ -100,21 +133,29 @@ userControllers.controller(
         if ($scope.newUser) {
           UserService.postUser($scope.user).then(function() {
             $state.go('user.list');
-            $rootScope.$broadcast('userDataChange', $scope.user);
+            // $rootScope.$broadcast('userDataChange', $scope.user);
           });
         } else {
           $scope.user.put().then(function() {
             $state.go('user.list');
-            $rootScope.$broadcast('userDataChange', $scope.user);
+            // $rootScope.$broadcast('userDataChange', $scope.user);
           });
         }
       };
 
       $scope.remove = function() {
+        var originalUser;
+
         $log.log('Delete button clicked');
-        notificationService.notice('Success');
-        // notificationService.notify({ title: 'Warning', text: 'This feature is not implemented yet' });
-        // $notification.warning('Remove User', 'This feature is not implemented yet');
+        notificationService.error('This feature is not implemented yet');
+        if ($scope.user.originalElement) {
+          originalUser = $scope.user.originalElement;
+        } else {
+          originalUser = $scope.user;
+        }
+
+        $scope.$emit('backend', { action: 'broadcast', message: 'delete user attempted', user: originalUser });
+        $scope.$emit('backend', { action: 'notify:sio', message: authService.user.email + ' tries to delete you', user: originalUser });
       };
 
       $scope.tierOptions = {
@@ -129,6 +170,14 @@ userControllers.controller(
       $scope.courseOptions = {
         width: 'element'
       };
+
+      if (!$scope.newUser) {
+        $scope.$emit('backend', { action: 'subscribe', channel: 'User:' + $scope.user._id.toString() });
+
+        $scope.$on('update', function(event, data) {
+          $scope.user = data.User;
+        });
+      }
 
     }
   ]
@@ -165,6 +214,10 @@ userControllers.controller(
         ]
       };
 
+      $scope.$on('update', function(event, data) {
+        $scope.user = data.User;
+      });
+
     }
   ]
 );
@@ -199,6 +252,10 @@ userControllers.controller(
             cellTemplate: linkCellTemplate }
         ]
       };
+
+      $scope.$on('update', function(event, data) {
+        $scope.user = data.User;
+      });
 
     }
   ]

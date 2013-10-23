@@ -1,6 +1,6 @@
 <h2>Edit User</h2>
 
-<div>id: {{user._id}}</div>
+<div ng-hide="newUser">id: {{ user._id }}</div>
 
 <form name="userForm" ng-submit="save()" class="form-horizontal">
 
