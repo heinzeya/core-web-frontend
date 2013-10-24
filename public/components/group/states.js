@@ -1,7 +1,7 @@
 angular.module('kabam.group.states').config([
-  'kabamStatesProvider', 'RestangularProvider',
-  function(kabamStatesProvider, RestangularProvider) {
-    RestangularProvider.setBaseUrl('/api/rest');
+  'kabamStatesProvider',
+  function(kabamStatesProvider) {
+
     kabamStatesProvider
       .push([
         {

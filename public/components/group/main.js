@@ -3,8 +3,8 @@
 //=require ./controllers.js
 //=require ./states.js
 
-angular.module('kabam.group.states', ['kabam.states', 'restangular']);
-angular.module('kabam.group.services', ['restangular']);
+angular.module('kabam.group.states', ['kabam.states']);
+angular.module('kabam.group.services', []);
 angular.module('kabam.group.controllers', ['kabam.group.services', 'kabam.user.services']);
 
 angular.module('kabam.group',

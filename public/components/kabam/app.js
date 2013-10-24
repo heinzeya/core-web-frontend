@@ -37,6 +37,7 @@ var dependencies = [
   'ui.bootstrap',
   'ui.notify',
   'btford.socket-io',
+  'restangular',
   'kabam.auth',
   'kabam.user',
   'kabam.group',
@@ -50,8 +51,8 @@ if (window.moduleDependencies && Array.isArray(window.moduleDependencies)) {
 
 angular.module('kabam', dependencies)
   .config([
-    '$stateProvider', '$urlRouterProvider', '$locationProvider', 'kabamStatesProvider',
-    function ($stateProvider, $urlRouterProvider, $locationProvider, kabamStatesProvider) {
+    '$stateProvider', '$urlRouterProvider', '$locationProvider', 'RestangularProvider', 'kabamStatesProvider',
+    function ($stateProvider, $urlRouterProvider, $locationProvider, RestangularProvider, kabamStatesProvider) {
       // add all states that were registered in other modules
       for(var s in kabamStatesProvider.states){
         $stateProvider.state(kabamStatesProvider.states[s]);
@@ -59,6 +60,22 @@ angular.module('kabam', dependencies)
 
       $urlRouterProvider.otherwise('/');
       // $locationProvider.html5Mode(true)
+
+      // setup Restangular
+      RestangularProvider.setBaseUrl('/api/rest');
+      RestangularProvider.setResponseExtractor(function(response) {
+        var newResponse = response;
+        if (angular.isArray(response)) {
+          angular.forEach(newResponse, function(value, key) {
+            newResponse[key].originalElement = angular.copy(value);
+          });
+        } else {
+          newResponse.originalElement = angular.copy(response);
+        }
+
+        return newResponse;
+      });
+
     }
   ])
   .run([
