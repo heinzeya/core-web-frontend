@@ -93,7 +93,14 @@ angular.module('kabam', dependencies)
 
       socket.on('notify', function(data) {
         $log.log('notify', data);
-        notificationService.notice(data.message);
+        if (data.type && _.contains([ 'info', 'error', 'notice', 'success' ], data.type)) {
+          notificationService.notify({
+            type: data.type,
+            text: data.message
+          });
+        } else {
+          $rootScope.$broadcast('notify', data);
+        }
       });
 
       $rootScope.$on('backend', function(event, args) {

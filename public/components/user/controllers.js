@@ -6,23 +6,49 @@ var userControllers = angular.module('kabam.user.controllers');
 userControllers.controller(
   'UserMainCtrl',
   [
-    '$scope', '$state', 'users',
-    function($scope, $state, users) {
+    '$scope', '$state', '$log', 'users',
+    function($scope, $state, $log, users) {
       $scope.users = users;
-      $scope.world = users[0];
+
+      $scope.$on('update', function(event, data) {
+        var idx = _.findIndex($scope.users, { _id: data.User._id });
+        if (idx >= 0) {
+          $scope.$apply(function() {
+            $scope.users.splice(idx, 1, data.User);
+            $log.log('Final users:', $scope.users);
+          });
+        }
+      });
+
+      $scope.$on('create', function(event, data) {
+        $scope.$apply(function() {
+          $scope.users.push(data.User);
+        });
+        $log.log($scope.users);
+      });
+
+      $scope.$on('delete', function(event, data) {
+        var idx = _.findIndex($scope.users, { _id: data.id });
+        if (idx >= 0) {
+          $scope.users.splice(idx, 1);
+        }
+      });
+
+      $scope.$emit('backend', { action: 'subscribe', channel: 'User' });
     }
   ]);
 
 userControllers.controller(
   'UserListCtrl',
   [
-    '$rootScope', '$scope', '$log', '$state',
-    function($rootScope, $scope, $log, $state) {
+    '$rootScope', '$scope', '$log', '$state', 'authService', 'notificationService',
+    function($rootScope, $scope, $log, $state, authService, notificationService) {
 
       $scope.selectedItems = [];
       var linkCellTemplate = '<div class="ngCellText" ng-class="col.colIndex()">' +
             '<a href="#/user/view/{{row.getProperty(col.field)}}">View</a> | ' +
-            '<a href="#/user/edit/{{row.getProperty(col.field)}}">Edit</a>' +
+            '<a href="#/user/edit/{{row.getProperty(col.field)}}">Edit</a> | ' +
+            '<a ng-click="poke(row.getProperty(col.field))">Poke</a>' +
             '</div>';
       $scope.gridOptions = {
         data: 'users',
@@ -46,6 +72,22 @@ userControllers.controller(
         $state.go('user.new');
       };
 
+      $scope.poke = function(id) {
+        $log.log('poke:', id);
+        var to = _.find($scope.users, { _id: id });
+        if (to) {
+          $scope.$emit('backend', { action: 'notify:sio',
+                                    message: authService.user.email + ' poke you',
+                                    user: to,
+                                    type: 'info'
+                                  });
+          if (to.isOnline) {
+            notificationService.success('You poke ' + to.username);
+          } else {
+            notificationService.error('You poke ' + to.username + ' but the user is not online');
+          }
+        }
+      };
       // $rootScope.$on('userDataChange', function(event, updatedUser) {
       //   var idx = _.findIndex($scope.users, { _id: updatedUser._id });
       //   if (idx >= 0) {
@@ -54,32 +96,6 @@ userControllers.controller(
       //     $scope.users.push(updatedUser);
       //   }
       // });
-
-      $scope.$on('update', function(event, data) {
-        var idx = _.findIndex($scope.users, { _id: data.User._id });
-        if (idx >= 0) {
-          $scope.$apply(function() {
-            $scope.users.splice(idx, 1, data.User);
-          });
-        }
-        $log.log($scope.users);
-      });
-
-      $scope.$on('create', function(event, data) {
-        $scope.$apply(function() {
-          $scope.users.push(data.User);
-        });
-        $log.log($scope.users);
-      });
-
-      $scope.$on('delete', function(event, data) {
-        var idx = _.findIndex($scope.users, { _id: data.id });
-        if (idx >= 0) {
-          $scope.users.splice(idx, 1);
-        }
-      });
-
-      $scope.$emit('backend', { action: 'subscribe', channel: 'User' });
 
     }
   ]
@@ -155,7 +171,11 @@ userControllers.controller(
         }
 
         $scope.$emit('backend', { action: 'broadcast', message: 'delete user attempted', user: originalUser });
-        $scope.$emit('backend', { action: 'notify:sio', message: authService.user.email + ' tries to delete you', user: originalUser });
+        $scope.$emit('backend', { action: 'notify:sio',
+                                  message: authService.user.email + ' tries to delete you',
+                                  user: originalUser,
+                                  type: 'notice'
+                                });
       };
 
       $scope.tierOptions = {
