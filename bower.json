@@ -18,7 +18,7 @@
     "bootstrap": "~2.3.2",
     "font-awesome": "*",
     "angular-ui-utils": "*",
-    "angular-grid": "*",
+    "angular-grid": "wattsbn/ng-grid",
     "lodash": "*",
     "angular-ui-select2": "*",
     "angular-bootstrap": "*",
