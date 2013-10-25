@@ -10,6 +10,31 @@ groupControllers.controller(
     function($scope, $state, groups) {
       $scope.groups = groups;
       $scope.world = groups[0];
+
+      $scope.$on('update', function(event, data) {
+        var idx = _.findIndex($scope.groups, { _id: data.Group._id });
+
+        if (idx >= 0) {
+          // replacing the whole array is a workaround to force ng-grid updates its view
+          // see https://github.com/angular-ui/ng-grid/pull/651
+          var groupsCopy = angular.copy($scope.groups);
+          groupsCopy.splice(idx, 1, data.Group);
+          $scope.groups = groupsCopy;
+        }
+      });
+
+      $scope.$on('create', function(event, data) {
+        $scope.groups.push(data.Group);
+      });
+
+      $scope.$on('delete', function(event, data) {
+        var idx = _.findIndex($scope.groups, { _id: data.id });
+        if (idx >= 0) {
+          $scope.users.splice(idx, 1);
+        }
+      });
+
+      $scope.$emit('backend', { action: 'subscribe', channel: 'Group' });
     }
   ]);
 
@@ -45,14 +70,6 @@ groupControllers.controller(
         $state.go('group.new');
       };
 
-      $rootScope.$on('groupDataChange', function(event, updatedGroup) {
-        var idx = _.findIndex($scope.groups, { _id: updatedGroup._id });
-        if (idx >= 0) {
-          $scope.groups[idx] = updatedGroup;
-        } else {
-          $scope.groups.push(updatedGroup);
-        }
-      });
     }
   ]
 );
@@ -85,6 +102,12 @@ groupControllers.controller(
       $scope.member = function() {
         $state.go('group.member', { id: $scope.group._id });
       };
+
+      $scope.$emit('backend', { action: 'subscribe', channel: 'Group:' + $scope.group._id.toString() });
+
+      $scope.$on('update', function(event, data) {
+        $scope.group = data.Group;
+      });
 
     }
   ]
@@ -143,6 +166,12 @@ groupControllers.controller(
       $scope.courseOptions = {
         width: 'element'
       };
+
+      $scope.$emit('backend', { action: 'subscribe', channel: 'Group:' + $scope.group._id.toString() });
+
+      $scope.$on('update', function(event, data) {
+        $scope.group = data.Group;
+      });
 
     }
   ]

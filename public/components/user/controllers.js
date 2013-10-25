@@ -88,14 +88,6 @@ userControllers.controller(
           }
         }
       };
-      // $rootScope.$on('userDataChange', function(event, updatedUser) {
-      //   var idx = _.findIndex($scope.users, { _id: updatedUser._id });
-      //   if (idx >= 0) {
-      //     $scope.users[idx] = updatedUser;
-      //   } else {
-      //     $scope.users.push(updatedUser);
-      //   }
-      // });
 
     }
   ]
