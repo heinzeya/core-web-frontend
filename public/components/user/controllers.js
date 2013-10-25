@@ -12,19 +12,19 @@ userControllers.controller(
 
       $scope.$on('update', function(event, data) {
         var idx = _.findIndex($scope.users, { _id: data.User._id });
+
         if (idx >= 0) {
-          $scope.$apply(function() {
-            $scope.users.splice(idx, 1, data.User);
-            $log.log('Final users:', $scope.users);
-          });
+          // replacing the whole array is a workaround to force ng-grid updates its view
+          // see https://github.com/angular-ui/ng-grid/pull/651
+          var usersCopy = angular.copy($scope.users);
+          usersCopy.splice(idx, 1, data.User);
+          $scope.users = usersCopy;
+          // $log.log('Final users:', $scope.users);
         }
       });
 
       $scope.$on('create', function(event, data) {
-        $scope.$apply(function() {
-          $scope.users.push(data.User);
-        });
-        $log.log($scope.users);
+        $scope.users.push(data.User);
       });
 
       $scope.$on('delete', function(event, data) {
