@@ -9,7 +9,7 @@
   - bower install
   - npm install
 
- script: "grunt test"
+ script: "grunt karma"
 
  notifications:
   email: false
