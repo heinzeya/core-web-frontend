@@ -1,5 +1,4 @@
-Kabam Core Web Frontend
-=======================
+# Kabam Core Web Frontend [![Build Status](https://travis-ci.org/mykabam/core-web-frontend.png?branch=master)](https://travis-ci.org/mykabam/core-web-frontend)
 
 ## Goals
 
