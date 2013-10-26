@@ -1,9 +1,16 @@
-language: node_js
-node_js:
-  - '0.10'
-before_script:
-  - 'npm install -g bower grunt-cli'
-  - 'bower install'
-notifications:
+ language: node_js
+ node_js:
+   - "0.10"
+
+ before_install:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - npm install -g karma bower grunt-cli
+  - bower install
+  - npm install
+
+ script: "grunt test"
+
+ notifications:
   email: false
   hipchat: b83791c5d4b712de736d8c1e9f7fb8@271266
