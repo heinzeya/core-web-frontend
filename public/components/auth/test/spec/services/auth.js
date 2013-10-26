@@ -4,10 +4,11 @@ describe('Service: authService', function () {
   var
     $httpBackend,
     authService,
-    CONFIG;
+    CONFIG,
+    $rootScope;
 
   beforeEach(module('kabam.auth.services'));
-  
+
   beforeEach(function(){
     module(function($provide){
       $provide.constant('CONFIG', {
@@ -20,10 +21,11 @@ describe('Service: authService', function () {
     });
   });
 
-  beforeEach(inject(function (_authService_, _$httpBackend_, _CONFIG_) {
+  beforeEach(inject(function (_authService_, _$httpBackend_, _$rootScope_, _CONFIG_) {
     authService = _authService_;
     $httpBackend = _$httpBackend_;
     CONFIG = _CONFIG_;
+    $rootScope = _$rootScope_;
     $httpBackend.when('POST', CONFIG.loginURL).respond(200, {username: 'Joe'});
   }));
 
@@ -51,24 +53,25 @@ describe('Service: authService', function () {
       authService.onauthenticated = jasmine.createSpy();
       authService.authenticate({name: 'Joe'});
       expect(authService.onauthenticated).toHaveBeenCalled();
-    })
+    });
   });
 
   describe('#login()', function(){
     it('should POST `CONFIG.loginURL`', function(){
-      $httpBackend.expectPOST(CONFIG.loginURL, {username: 'joe', password: 'qweqwe'});
-      authService.logIn('joe', 'qweqwe');
+      $httpBackend.expectPOST(CONFIG.loginURL, {username: 'joe', password: 'qweqwe'})
+        .respond(200, { username: 'Joe' });
+      $rootScope.$apply(authService.logIn('joe', 'qweqwe'));
       $httpBackend.flush();
     });
     it("should  authenticate user if username and passwordsmatch", function(){
       $httpBackend.expectPOST(CONFIG.loginURL, {username: 'joe', password: 'qweqwe'});
-      authService.logIn('joe', 'qweqwe');
+      $rootScope.$apply(authService.logIn('joe', 'qweqwe'));
       $httpBackend.flush();
       expect(authService.isAuthenticated()).toBe(true);
     });
     it("should not authenticate user if username and passwords don't match", function(){
       $httpBackend.expectPOST(CONFIG.loginURL, {username: 'joe', password: 'qweqwe'}).respond(401);
-      authService.logIn('joe', 'qweqwe');
+      $rootScope.$apply(authService.logIn('joe', 'qweqwe'));
       $httpBackend.flush();
       expect(authService.isAuthenticated()).toBe(false);
     });
@@ -77,7 +80,7 @@ describe('Service: authService', function () {
   describe('#signup()', function(){
     it('should POST `CONFIG.signUpURL`', function(){
       $httpBackend.expectPOST(CONFIG.signUpURL, {username: 'joe', email: 'joe@doe.com', password: 'qweqwe'}).respond(201);
-      authService.signUp('joe', 'joe@doe.com', 'qweqwe');
+      $rootScope.$apply(authService.signUp('joe', 'joe@doe.com', 'qweqwe'));
       $httpBackend.flush();
     });
   });
@@ -85,24 +88,28 @@ describe('Service: authService', function () {
   describe('#logout()', function(){
     it('should POST `CONFIG.logoutURL`', function(){
       $httpBackend.expectPOST(CONFIG.logoutURL).respond(200);
-      authService.authenticate({username: 'Joe'});
-      authService.logOut();
+      $rootScope.$apply(function() {
+        authService.authenticate({username: 'Joe'});
+        authService.logOut();
+      });
       $httpBackend.flush();
     });
     it('should call `onloggedout` function if exists', function(){
       $httpBackend.expectPOST(CONFIG.logoutURL).respond(200);
       authService.onloggedout = jasmine.createSpy();
-      authService.authenticate({username: 'Joe'});
-      authService.logOut();
+      $rootScope.$apply(function() {
+        authService.authenticate({username: 'Joe'});
+        authService.logOut();
+      });
       $httpBackend.flush();
       expect(authService.onloggedout).toHaveBeenCalled();
-    })
+    });
   });
 
   describe('#recover', function(){
     it('should POST `CONFIG.recoveryURL`', function(){
       $httpBackend.expectPOST(CONFIG.recoveryURL).respond(200);
-      authService.recover('john@legend.com');
+      $rootScope.$apply(authService.recover('john@legend.com'));
       $httpBackend.flush();
     });
   });
@@ -112,13 +119,11 @@ describe('Service: authService', function () {
       var error;
 
       runs(function(){
-        inject(function($rootScope){
-          authService.save({newPassword1: 'ololo', newPassword2: 'trololo'}).then(null, function(data){
+        $rootScope.$apply(
+          authService.save({newPassword1: 'ololo', newPassword2: 'trololo'}).then(null, function(data) {
             error = data;
-          });
-          $rootScope.$apply();
-        });
-
+          })
+        );
       });
 
       waitsFor(function(){
@@ -127,7 +132,7 @@ describe('Service: authService', function () {
 
       runs(function(){
         expect(error).toEqual({errors: {newPassword2: 'Password confirmation should match password'}});
-      })
+      });
     });
     it('should POST `CONFIG.profileEditURL`', function(){
       $httpBackend.expectPOST(CONFIG.profileEditURL, {
@@ -141,12 +146,14 @@ describe('Service: authService', function () {
         firstName: 'John',
         lastName: 'Legend'
       });
-      authService.save({
-        username: 'joe',
-        email: 'joe@doe.com',
-        firstName: 'John',
-        lastName: 'Legend'
-      });
+      $rootScope.$apply(
+        authService.save({
+          username: 'joe',
+          email: 'joe@doe.com',
+          firstName: 'John',
+          lastName: 'Legend'
+        })
+      );
       $httpBackend.flush();
     });
     it('should replace authService.user with the returned one', function(){
@@ -161,12 +168,14 @@ describe('Service: authService', function () {
         firstName: 'John',
         lastName: 'Legend'
       });
-      authService.save({
-        username: 'joe',
-        email: 'joe@travolta.com',
-        firstName: 'John',
-        lastName: 'Travolta'
-      });
+      $rootScope.$apply(
+        authService.save({
+          username: 'joe',
+          email: 'joe@travolta.com',
+          firstName: 'John',
+          lastName: 'Travolta'
+        })
+      );
       $httpBackend.flush();
       expect(authService.user).toEqual({
         username: 'joe',
