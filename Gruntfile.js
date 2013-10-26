@@ -20,7 +20,7 @@ module.exports = function(grunt) {
 
   // configurable paths
   var yeomanConfig = {
-    app: 'app',
+    app: 'public',
     dist: 'dist'
   };
 
@@ -305,11 +305,7 @@ module.exports = function(grunt) {
     },
     karma: {
       unit: {
-        configFile: 'karma.conf.js',
-        singleRun: true
-      },
-      e2e: {
-        configFile: 'karma-e2e.conf.js',
+        configFile: 'test/karma.conf.js',
         singleRun: true
       }
     },
