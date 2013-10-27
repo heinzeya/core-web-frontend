@@ -25,6 +25,7 @@
 //= require user/main.js
 //= require group/main.js
 //= require search/main.js
+//= require ./admin.js
 
 //= require_self
 

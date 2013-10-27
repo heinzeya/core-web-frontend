@@ -8,7 +8,8 @@
   }
   .brand {
     padding: ((@adminPanelHeight - @baseLineHeight) / 2) 20px ((@adminPanelHeight - @baseLineHeight) / 2);
-    color: @navbarBrandColor;
+    color: @grayLight;
+    font-size: @baseFontSize;
     text-shadow: none;
   }
   .navbar-text {
@@ -25,5 +26,15 @@
     padding: ((@adminPanelHeight - @baseLineHeight) / 2) 15px ((@adminPanelHeight - @baseLineHeight) / 2);
     color: @navbarLinkColor;
     text-shadow: none;
+  }
+  .navbar-form {
+    input, button {
+      border-radius: 0;
+      height: 24px;
+      margin-top: 3px;
+    }
+  }
+  .navbar-text + button {
+    margin: 0;
   }
 }
