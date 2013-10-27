@@ -1,0 +1,29 @@
+@adminPanelHeight: 30px;
+
+.admin-panel {
+  .navbar-inner {
+    background: @grayDark;
+    min-height: @adminPanelHeight;
+    border: none;
+  }
+  .brand {
+    padding: ((@adminPanelHeight - @baseLineHeight) / 2) 20px ((@adminPanelHeight - @baseLineHeight) / 2);
+    color: @navbarBrandColor;
+    text-shadow: none;
+  }
+  .navbar-text {
+    line-height: @adminPanelHeight;
+    color: @navbarText;
+  }
+  .divider-vertical {
+    height: @adminPanelHeight;
+    border-left: 1px solid @navbarBackground;
+    border-right: 1px solid @navbarBackgroundHighlight;
+  }
+  .nav > li > a {
+    // Vertically center the text given @navbarHeight
+    padding: ((@adminPanelHeight - @baseLineHeight) / 2) 15px ((@adminPanelHeight - @baseLineHeight) / 2);
+    color: @navbarLinkColor;
+    text-shadow: none;
+  }
+}
