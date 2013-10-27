@@ -75,7 +75,9 @@ angular.module('kabam', dependencies)
 
         return newResponse;
       });
-
+      RestangularProvider.setRestangularFields({
+        id: '_id'
+      });
     }
   ])
   .run([

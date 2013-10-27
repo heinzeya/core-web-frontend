@@ -30,7 +30,7 @@ groupControllers.controller(
       $scope.$on('delete', function(event, data) {
         var idx = _.findIndex($scope.groups, { _id: data.id });
         if (idx >= 0) {
-          $scope.users.splice(idx, 1);
+          $scope.groups.splice(idx, 1);
         }
       });
 
