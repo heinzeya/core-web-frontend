@@ -25,6 +25,7 @@
 //= require user/main.js
 //= require group/main.js
 //= require search/main.js
+//= require chat-xmpp/main.js
 //= require ./admin.js
 
 //= require_self
@@ -43,7 +44,8 @@ var dependencies = [
   'kabam.user',
   'kabam.group',
   'kabam.search',
-  'kabam.states'
+  'kabam.states',
+  'ChatXmpp'
 ];
 
 if (window.moduleDependencies && Array.isArray(window.moduleDependencies)) {
