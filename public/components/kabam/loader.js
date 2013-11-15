@@ -29,6 +29,7 @@
 //= require search/main.js
 //= require chat-xmpp/main.js
 //= require ./admin.js
+//= require ./controllers/index.js
 
 window.kabam = {
   modules : [],

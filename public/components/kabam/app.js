@@ -9,6 +9,7 @@ kabam.prepend([
   'kabam.group',
   'kabam.search',
   'kabam.states',
+  'kabam.controllers',
   'ChatXmpp'
 ]);
 
