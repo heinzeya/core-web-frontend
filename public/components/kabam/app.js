@@ -1,4 +1,4 @@
-kabam.use([
+kabam.prepend([
   'ui.router',
   'ui.bootstrap',
   'ui.notify',

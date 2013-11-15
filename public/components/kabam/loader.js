@@ -1,16 +1,18 @@
 //= require jquery/jquery.js
 //= require jquery-ui/ui/jquery-ui.js
+//= require pines-notify/jquery.pnotify.js
+
 //= require lodash/dist/lodash.js
 //= require vendor/bootstrap.js
 //= require select2/select2.js
-//= require pines-notify/jquery.pnotify.js
 
 //= require angular/angular.js
 //= require angular-resource/angular-resource.js
 //= require angular-cookies/angular-cookies.js
 //= require angular-sanitize/angular-sanitize.js
-//= require angular-socket-io/socket.js
+
 //= require angular-ui-router/release/angular-ui-router.js
+//= require angular-socket-io/socket.js
 //= require angular-bootstrap/ui-bootstrap-tpls.js
 //= require angular-ui-utils/modules/utils.js
 //= require angular-ui-select2/src/select2.js
@@ -33,5 +35,9 @@ window.kabam = {
   use: function(modules){
     angular.isArray(modules) || (modules = [modules]);
     this.modules = this.modules.concat(modules);
+  },
+  prepend: function(modules){
+    angular.isArray(modules) || (modules = [modules]);
+    this.modules = modules.concat(this.modules);
   }
 };
